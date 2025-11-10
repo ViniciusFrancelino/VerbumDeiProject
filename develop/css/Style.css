@@ -1,3 +1,4 @@
+/* Body */
 body {
     background-color: #fce9d0;
     background-size: cover;
@@ -7,17 +8,19 @@ body {
     padding: 0;
 }
 
+/* Header */
+
 header {
-    display: flex; /* Alinha os intens lado a lado */
-    align-items: center; /* Centraliza verticalmente */
-    background-color: #43260c; /* Define a cor de fundo do header*/
-    border-bottom: 3px solid #000000; /* Define a Borda entre o header e o main */
+    display: flex; 
+    justify-content: space-between;
+    background-color: #43260c;
+    border-bottom: 3px solid #000000;
 }
 
 header img {
-    max-width: 17%; /* Controla a Largura da imagem */
-    height: auto; /* Controla a altura da imagem - Deixar no auto, ajusta automaticamente*/
-    margin-left: 2%;
+    max-width: 17%;
+    height: auto;
+    margin-left: 5%;
 }
 
 header .divHeader {
@@ -41,5 +44,57 @@ header nav {
 
 header nav a {
     font: serif;
-    color: #ffff;
+    color: #fce9d0;
+}
+
+/* Section */
+.sectionText {
+    margin-top: 2.5%;
+    margin-left: 2.5%;
+}
+
+.divSectionText {
+    margin-top: 5px solid #43260c;
+}
+
+
+/* Footer */
+footer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* Alinha conteúdo à esquerda */
+    background-color: #43260c;
+    color: #ffffff; /* Define cor branca para todo o texto */
+    padding: 10px 5%;
+    position: fixed; /* Fixa no canto inferior */
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    font-size: 90%;
+}
+
+footer img {
+    max-width: 17%;
+    height: auto;
+    margin-right: 15px;
+}
+
+footer .divFooter {
+    display: flex;
+    align-items: center;
+    gap: 2%;
+}
+
+footer .divFooterP {
+    display: flex;
+    flex-direction: column; /* empilha o texto se necessário */
+}
+
+footer p {
+    color: #ffffff; /* Garante que todos os textos fiquem brancos */
+}
+
+footer h1 {
+    font-size: 110%;
+    color: #fce9d0;
 }
