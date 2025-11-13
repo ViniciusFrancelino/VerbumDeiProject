@@ -1,7 +1,7 @@
 # VerbumDeiProject
-📘 VerbumDei é um projeto acadêmico que propõe um sistema interativo para o estudo da Bíblia, com leitura, quizzes, mural de interação e gerenciamento de favoritos.
+📘 VerbumDei é um projeto acadêmico que propõe um sistema interativo para o estudo da Bíblia e sobre a igreja catolica, com leituras, quizzes, mural de interação e gerenciamento de favoritos.
 <h2>📖 Projeto: Bíblia Interativa</h2>
-Este projeto tem como objetivo o desenvolvimento de um site interativo sobre a Bíblia, com funcionalidades de cadastro, login, dashboard e recursos de estudo e interação entre usuários.
+Este projeto tem como objetivo o desenvolvimento de um site interativo sobre a Igreja catolica, com funcionalidades de cadastro, login, dashboard e recursos de estudo e interação entre usuários.
 O sistema utiliza uma API interna (Web-Data-Viz) desenvolvida em Node.js, com Express como servidor web e MySQL como banco de dados.
 <h2>⚙️ Tecnologias utilizadas:</h2>
 •	Node.js — execução do backend<br>
@@ -12,6 +12,7 @@ O sistema utiliza uma API interna (Web-Data-Viz) desenvolvida em Node.js, com Ex
 •	Cadastro e Login de Usuário<br>
 •	Dashboard personalizada<br>
 •	Leitura da Bíblia (armazenada localmente)<br>
+•	Tela de Orações<br>
 •	Favoritos — salvar versículos e capítulos preferidos<br>
 •	Quiz Bíblico — perguntas interativas para aprendizado<br>
 •	Mural/Fórum — espaço para interação e compartilhamento entre usuários<br>
