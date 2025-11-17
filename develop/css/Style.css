@@ -9,7 +9,6 @@ body {
 }
 
 /* Header */
-
 header {
     display: flex; 
     justify-content: space-between;
@@ -44,7 +43,16 @@ header nav {
 
 header nav a {
     font: serif;
+    font-size: 150%;
     color: #fce9d0;
+    text-decoration: none;
+}
+
+header .divHeaderButtom {
+    display: flex;
+    width: 3%;
+    height: 2%;
+    margin: 2.5% 6% 0 0;
 }
 
 /* Section */
@@ -76,22 +84,12 @@ footer {
 footer img {
     max-width: 17%;
     height: auto;
-    margin-right: 15px;
 }
 
 footer .divFooter {
     display: flex;
     align-items: center;
     gap: 2%;
-}
-
-footer .divFooterP {
-    display: flex;
-    flex-direction: column; /* empilha o texto se necessário */
-}
-
-footer p {
-    color: #ffffff; /* Garante que todos os textos fiquem brancos */
 }
 
 footer h1 {
