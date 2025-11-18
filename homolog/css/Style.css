@@ -48,11 +48,41 @@ header nav a {
     text-decoration: none;
 }
 
-header .divHeaderButtom {
+header .divLoginButtom {
     display: flex;
-    width: 3%;
-    height: 2%;
-    margin: 2.5% 6% 0 0;
+    font-size: 150%;
+    width: 6%;
+    height: 3%;
+    margin: 2.1% 0 0 0;
+    background-color: #fce9d0;
+    border: #ffdaaa;
+    border-radius: 15px;
+}
+.divLoginButtom a {    
+    display: flex;
+    text-decoration: none;
+    padding: 3% 22%;
+    color: #000000;
+}
+
+
+header .divCadastroButtom {
+    display: flex;
+    text-align: center;
+    font-size: 150%;
+    width: 6%;
+    height: 3%;
+    margin: 2.1% 6% 0 0;
+    background-color: #fce9d0;
+    border: #ffdaaa;
+    border-radius: 15px;
+}
+
+.divCadastroButtom a {
+    display: flex;
+    text-decoration: none;
+    padding: 3% 11%;
+    color: #000000;
 }
 
 /* Section */
@@ -70,11 +100,11 @@ header .divHeaderButtom {
 footer {
     display: flex;
     align-items: center;
-    justify-content: flex-start; /* Alinha conteúdo à esquerda */
+    justify-content: flex-start;
     background-color: #43260c;
-    color: #ffffff; /* Define cor branca para todo o texto */
+    color: #ffffff;
     padding: 10px 5%;
-    position: fixed; /* Fixa no canto inferior */
+    position: fixed;
     bottom: 0;
     left: 0;
     width: 100%;
