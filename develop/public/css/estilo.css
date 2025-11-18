@@ -24,6 +24,9 @@ header {
     justify-content: space-between;
     background-color: #43260c;
     border-bottom: 3px solid #000000;
+    left: 0;
+    width: 100%;
+    font-size: 90%;
 }
 
 header img {
@@ -66,15 +69,15 @@ header .divLoginButtom {
     margin: 2.1% 0 0 0;
     background-color: #fce9d0;
     border: #ffdaaa;
-    border-radius: 15px;
+    border-radius: 10px;
 }
+
 .divLoginButtom a {    
     display: flex;
     text-decoration: none;
     padding: 3% 22%;
     color: #000000;
 }
-
 
 header .divCadastroButtom {
     display: flex;
@@ -85,7 +88,7 @@ header .divCadastroButtom {
     margin: 2.1% 6% 0 0;
     background-color: #fce9d0;
     border: #ffdaaa;
-    border-radius: 15px;
+    border-radius: 10px;
 }
 
 .divCadastroButtom a {
@@ -113,8 +116,6 @@ footer {
     justify-content: flex-start;
     background-color: #43260c;
     color: #ffffff;
-    padding: 8px 5%;
-    position: fixed;
     bottom: 0;
     left: 0;
     width: 100%;
@@ -124,6 +125,7 @@ footer {
 footer img {
     max-width: 17%;
     height: auto;
+    margin-left: 5%;
 }
 
 footer .divFooter {
