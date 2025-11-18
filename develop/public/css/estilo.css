@@ -142,9 +142,10 @@ footer h1 {
 /* LOGIN */
 
 .login {
-  height: var(--tamanho-login);
-  background-image: url('../assets/imgs/bg-jelly-fish-para-home.png');
+  background-color: #fce9d0;
   background-size: cover;
+  background-attachment: scroll;
+  font-family: 'serif', 'Times New Roman';
 }
 
 .login .container {
