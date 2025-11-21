@@ -2,11 +2,57 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
+/* Body */
 body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Barlow', 'Segoe UI', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #fce9d0;
+    background-size: cover;
+    background-attachment: scroll;
+    font-family: 'serif', 'Times New Roman';
+    margin: 0;
+    padding: 0;
 }
+
+.divOptionSide {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 260px;
+  height: 100vh;
+  background: #43260c;
+  color: #fce9d0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 28px 20px;
+  z-index: 40;
+}
+
+.divOptionLogo img {
+  width: 90%;
+  height: auto
+}
+
+.divOptionButton {
+  text-align: center;
+  cursor: pointer;
+  background-color: #fce9d0;
+  color: #43260c;
+  border-radius: 10px;
+  padding: 0px 15px;
+  text-decoration: none;
+}
+
+.divOptionLogout {
+  text-align: center;
+  width: 20%;
+  background-color: #fce9d0;
+  color: #43260c;
+  border-radius: 10px;
+  padding: 0px 15px;
+  cursor: pointer;
+}
+
+/* Old Style*/
 
 .label-captura {
   display: flex;
