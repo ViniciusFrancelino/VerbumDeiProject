@@ -6,11 +6,9 @@ CREATE TABLE usuario (
 	nome VARCHAR(50),
 	email VARCHAR(50),
 	senha VARCHAR(50),
-	fk_empresa INT,
-	FOREIGN KEY (fk_empresa) REFERENCES empresa(id)
+	fk_empresa INT
 );
 
-Tabela para
 CREATE TABLE aviso (
 	id INT PRIMARY KEY AUTO_INCREMENT,
 	titulo VARCHAR(100),
@@ -19,20 +17,36 @@ CREATE TABLE aviso (
 	FOREIGN KEY (fk_usuario) REFERENCES usuario(id)
 );
 
+
 /* Tabela De Perguntas Quiz */
-CREATE TABLE quizPerguntas(
-	id INT PRIMARY KEY AUTO AUTO_INCREMENT,
+CREATE TABLE quizPergunta (
+	id INT PRIMARY KEY AUTO_INCREMENT,
 	pergunta VARCHAR(100) NOT NULL UNIQUE,
 	categoria VARCHAR(10) NOT NULL,
 	CONSTRAINT chkCategoria CHECK (categoria IN('Biblica', 'Milagres', 'Sacramento', 'Historia')),
 	dificuldade VARCHAR(7) NOT NULL,
 	CONSTRAINT chkDificuldade CHECK (categoria IN('Facil', 'Medio', 'Dificil')),
-	status BOOLEAN NOT NULL,
+	status BOOLEAN NOT NULL
 );
 
 /* Tabela De Respostas Quiz */
-CREATE TABLES quizRespostas (
+CREATE TABLE quizResposta (
 	id INT PRIMARY KEY AUTO_INCREMENT,
+	fkPergunta INT,
 	resposta VARCHAR(100) NOT NULL UNIQUE,
 	validacao BOOLEAN,
-)
+	FOREIGN KEY (fkPergunta) REFERENCES quizPergunta(id)
+);
+
+/* Tabela de Acertos do Quiz */
+CREATE TABLE quizResultado (
+	id INT PRIMARY KEY AUTO_INCREMENT,
+	fkUsuario INT,
+	fkPergunta INT,
+	fkResposta INT,
+	resultado BOOLEAN,
+	dataQuiz DATETIME,
+	FOREIGN KEY (fkUsuario) REFERENCES usuario(id),
+	FOREIGN KEY (fkPergunta) REFERENCES quizPergunta(id),
+	FOREIGN KEY (fkResposta) REFERENCES quizResposta(id)
+);
