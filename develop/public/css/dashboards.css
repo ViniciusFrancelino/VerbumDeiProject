@@ -12,6 +12,7 @@ body {
     padding: 0;
 }
 
+/* MENU SIDE BAR INICIO */
 /* ----- MENU FLUTUANTE ----- */
 .divOptionSide {
     position: fixed;
@@ -29,7 +30,7 @@ body {
 
     display: flex;
     flex-direction: column;
-    align-items: center;  /* CENTRALIZA TUDO */
+    align-items: center;
     gap: 25px;
 }
 
@@ -38,7 +39,7 @@ body {
     display: flex;
     justify-content: center;
     width: 100%;
-    margin-top: 10px;
+    margin-top: -15px;
 }
 
 .divOptionLogo img {
@@ -93,86 +94,102 @@ body {
 .divOptionLogout h3 {
     margin: 0;
 }
+/* FIM HEADER/SIDEBAR */
 
+/* -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- */
 
-/* Old Style*/
-
+/* Forúm CSS */
 .label-captura {
   display: flex;
   justify-content: center;
 }
 
-.dash-right .avisos {
+.dash-right .avisos { /* Controla o bloco inteiro onde ficam formulário e mural */
   width: 100%;
-  color: rgb(216, 216, 216);
-  font-family: 'Barlow', 'Segoe UI', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #43260c;
+  font-family: 'Barlow', 'Segoe UI', 'Segoe UI', Tahoma, Verdana, sans-serif;
 }
 
-.dash-right .avisos .container {
+.dash-right h1 { /* Controla as cores das fontes do H1 */
+  color: #43260c;
+}
+
+.dash-right label { /* Controla as cores das fontes da label */
+  color: #43260c;
+}
+
+.dash-right .avisos .container { /* Centraliza e organiza verticalmente tudo dentro da área de avisos */
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.dash-right .avisos .container .div-form {
+.dash-right .avisos .container .div-form { /* Controla largura */
   width: 95%;
 }
 
-.dash-right .avisos .container .div-form #form_postagem {
+.dash-right .avisos .container .div-form #form_postagem { /* Estiliza o próprio form */
   width: 95%;
 }
 
-.dash-right .avisos .div-form label {
+.dash-right .avisos .div-form label { /* Define largura dos labels */
   width: 95%;
 }
 
-.dash-right .avisos .div-form input {
+.dash-right .avisos .div-form input { /* Deixa o input mais largo e com bordas arredondadas. */
   width: 95%;
-  border-radius: 5px;
-}
-
-.dash-right .avisos .div-form textarea {
-  width: 95%;
-  border: 3px solid #e6005a;
+  border: 3px solid #43260c;
   background-color: white;
   border-radius: 5px;
 }
 
-.dash-right .avisos .div-form button {
+.dash-right .avisos .div-form textarea { /* Estilização completa da caixa de texto. */
+  width: 95%;
+  border: 3px solid #43260c;
+  background-color: white;
+  border-radius: 5px;
+}
+
+.dash-right .avisos .div-form button { /* Estilização Completa do Botão Enviar */
   cursor: pointer;
-  font-family: 'Barlow', 'Segoe UI', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Barlow', 'Segoe UI', 'Segoe UI', Tahoma, Verdana, sans-serif;
   border: 0;
   border-radius: 5px;
   font-weight: 600;
   font-size: 18px;
   padding: 10px 15px;
-  color: white;
-  background-color: #e6005a;
+  color: #fce9d0;
+  background-color: #43260c;
   width: 120px;
 }
+.dash-right .avisos .div-form button:hover { /* Hover do Botão Enviar */
+    background-color: #381c04;
+}
 
-.publicacao-btn-editar {
+.publicacao-btn-editar { /* Estilização completa Botões Editar/Deletar */
   cursor: pointer;
-  font-family: 'Barlow', 'Segoe UI', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Barlow', 'Segoe UI', 'Segoe UI', Tahoma, Verdana, sans-serif;
   border: 0;
   border-radius: 5px;
   font-weight: 600;
   font-size: 14px;
   padding: 5px 8px;
-  color: white;
-  background-color: #e6005a;
+  color: #fce9d0;
+  background-color: #43260c;
   width: 80px;
 }
 
-.publicacao {
+.publicacao { /* Caixa de publicações */
   display: flex;
   flex-wrap: wrap;
   align-content: stretch;
   flex-direction: column;
   justify-content: center;
   align-items: stretch;
-  border-bottom: 3px solid #e6005a;
-  padding: 20px;
+  background-color: #e2d0b5;
+  border-bottom: 3px solid #43260c;
+  border-radius: 5px;
+  padding: 25px;
 }
 
 .publicacao>*:not(:last-child) {
@@ -197,6 +214,9 @@ body {
 .div-buttons>* {
   margin-left: 30px;
 }
+/* FIM FÓRUM */
+
+/* -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- */
 
 /* pagina graficos */
 
@@ -370,7 +390,7 @@ body {
 }
 
 .btn-chart {
-  font-family: 'Barlow', 'Segoe UI', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Barlow', 'Segoe UI', 'Segoe UI', Tahoma, Verdana, sans-serif;
   border: 0;
   font-weight: 600;
   font-size: 18px;
@@ -415,8 +435,6 @@ canvas {
 }
 
 /* PAGINA DOS GRÁFICOS 2023 */
-
-
 
 .header-left a {
   text-decoration: none;
