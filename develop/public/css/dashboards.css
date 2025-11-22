@@ -12,45 +12,88 @@ body {
     padding: 0;
 }
 
+/* ----- MENU FLUTUANTE ----- */
 .divOptionSide {
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 260px;
-  height: 100vh;
-  background: #43260c;
-  color: #fce9d0;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 28px 20px;
-  z-index: 40;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+
+    width: 260px;
+    height: 90vh;
+
+    background: #43260c;
+    color: #fce9d0;
+
+    padding: 28px 20px;
+    border-radius: 20px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;  /* CENTRALIZA TUDO */
+    gap: 25px;
+}
+
+/* ----- LOGO AO MEIO ----- */
+.divOptionLogo {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 10px;
 }
 
 .divOptionLogo img {
-  width: 90%;
-  height: auto
+    width: 70%;
+    height: auto;
 }
 
+/* Texto Olá, usuário */
+.hello h3 {
+    margin: 0;
+}
+
+/* ----- Botões ----- */
 .divOptionButton {
-  text-align: center;
-  cursor: pointer;
-  background-color: #fce9d0;
-  color: #43260c;
-  border-radius: 10px;
-  padding: 0px 15px;
-  text-decoration: none;
+    width: 100%;
+    text-align: center;
+    background-color: #fce9d0;
+    color: #43260c;
+    border-radius: 12px;
+    padding: 8px 10px;
+    cursor: pointer;
+    transition: 0.2s;
 }
 
-.divOptionLogout {
-  text-align: center;
-  width: 20%;
-  background-color: #fce9d0;
-  color: #43260c;
-  border-radius: 10px;
-  padding: 0px 15px;
-  cursor: pointer;
+.divOptionButton:hover {
+    background-color: #e2d0b5;
+    transform: scale(1.03);
 }
+
+.divOptionButton a {
+    color: #43260c;
+    text-decoration: none;
+}
+
+/* ----- Botão Sair ----- */
+.divOptionLogout {
+    width: 100%;
+    text-align: center;
+    background-color: #fce9d0;
+    color: #43260c;
+    border-radius: 12px;
+    padding: 8px 0;
+    cursor: pointer;
+    margin-top: auto;  /* Desce o botão para o final */
+    transition: 0.2s;
+}
+
+.divOptionLogout:hover {
+    background-color: #e2d0b5;
+}
+
+.divOptionLogout h3 {
+    margin: 0;
+}
+
 
 /* Old Style*/
 
@@ -373,10 +416,7 @@ canvas {
 
 /* PAGINA DOS GRÁFICOS 2023 */
 
-.janela {
-  display: flex;
-  /* width: 100vw; */
-}
+
 
 .header-left a {
   text-decoration: none;
@@ -402,7 +442,6 @@ canvas {
   display: flex;
   width: 70%;
   height: fit-content;
-  background-color: #161618;
   position: relative;
   top: 0;
   left: 25%;
@@ -411,7 +450,7 @@ canvas {
 }
 
 .header-left h1 {
-  color: #32b9cd;
+  color: #43260c;
 }
 
 .hello {
@@ -428,47 +467,4 @@ canvas {
 
 .hello h3 span {
   font-weight: 800;
-}
-
-.btn-nav {
-  width: 40%;
-  color: white;
-  background-color: #e6005a;
-  border-radius: 5px;
-  text-align: center;
-  padding: 2% 5%;
-}
-
-.btn-nav-white {
-  width: 40%;
-  background-color: white;
-  border: 3px solid #e6005a;
-  border-radius: 5px;
-  text-align: center;
-  padding: 2% 5%;
-}
-
-.btn-nav-white h3 {
-  color: #e6005a;
-  padding: 0;
-  margin: 0;
-}
-
-.btn-nav h3,
-.btn-logout h3 {
-  margin: 0;
-  padding: 0;
-}
-
-.btn-logout {
-  margin: 0;
-  padding: 0;
-  width: 20%;
-  background-color: #32b9cd;
-  color: white;
-  border-radius: 10px;
-  text-align: center;
-  padding: 10px 15px;
-  margin-bottom: 100px;
-  cursor: pointer;
 }
