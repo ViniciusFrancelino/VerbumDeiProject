@@ -122,22 +122,50 @@ body {
 
 .divQuizzes {
   display: flex;
-  gap: 15%;
-  margin: 12% 10% 10% 28%;
+  justify-content: center;
+  gap: 70px;
+  margin: 18% 18% 10% 28%;
 }
 
 .card {
-  display: flex;
+  width: 400;
+  height: 200;
+  background: #f4d6b3;
+  padding: 40px;
+  border-radius: 20px;
   text-align: center;
-  align-items: center;
-  justify-content: center;
-  width: 500px;
-  height: 100px;
-  margin: 10px;
-  background-color: #f8dab5;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card:hover {
+  background-color: #c4a885;
+}
+
+.divQuizzes h2 {
+  font-size: 30px;
   color: #43260c;
-  border-radius: 10px;
-  
+}
+
+.divQuizzes h3 {
+  color: #43260c;
+  font-size: 110%;
+}
+
+.divQuizButton {
+  background-color: #43260c;
+  color: #f4d6b3;
+  border-radius: 5px;
+  padding: 12px 20px;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.divQuizButton:hover {
+  background-color: #381c04;
+  transition: 0.3s;
+  transform: scale(1.05);
 }
 
 /* FIM QUIZ -- FIM QUIZ -- FIM QUIZ -- FIM QUIZ -- FIM QUIZ -- FIM QUIZ -- FIM QUIZ -- FIM QUIZ -- */
