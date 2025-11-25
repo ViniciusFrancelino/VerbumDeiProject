@@ -5,7 +5,8 @@ body {
   background-color: #fce9d0;
   background-size: cover;
   background-attachment: scroll;
-  font-family: 'serif', 'Times New Roman';
+  /* font-family: 'serif', 'Times New Roman'; */
+  font-family: 'Cinzel';
   margin: 0;
   padding: 0;
 }
@@ -61,6 +62,10 @@ body {
   color: #fce9d0;
   text-decoration: none;
 }
+
+.header li {
+  color: #fce9d0;
+} 
 
 .header .divLoginButtom {
   display: flex;
@@ -124,7 +129,7 @@ footer {
 }
 
 footer img {
-  max-width: 17%;
+  max-width: 12%;
   height: auto;
   margin-left: 5%;
 }
