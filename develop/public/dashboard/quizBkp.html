@@ -10,6 +10,78 @@
 
     <link rel="stylesheet" href="../css/dashboards.css">
 
+    <style>
+        :root {
+            --primary-brand-color: #ED145B;
+            --secondary-brand-color: #0762C8;
+            --success: #198754;
+            --success-dark: #095c36;
+            --success-light: #9dd3ba;
+            --warning: #ffc107;
+            --warning-dark: #705400;
+            --warning-light: #fdebb3;
+            --danger: #dc3545;
+            --danger-dark: #990c19;
+            --danger-light: #f0c1c6;
+            --new-gray: #CCCCCC;
+            --new-black: #212427;
+            --new-white: #E8E8E8;
+        }
+
+        .pontuacaoEJogo {
+            margin-left: 45%;
+        }
+
+        button {
+            font-family: monospace;
+            font-weight: bold;
+        }
+
+        .flex-colunar {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .width-fit-content {
+            width: fit-content;
+        }
+
+        .border-primary {
+            border: 3px solid var(--primary-brand-color);
+        }
+
+        .border-secondary {
+            border: 3px solid var(--secondary-brand-color);
+        }
+
+        .padding-8 {
+            padding: 8px;
+        }
+
+        .text-bold {
+            font-weight: bold;
+        }
+
+        .text-success-with-bg {
+            color: var(--success-dark);
+            background-color: var(--success-light);
+        }
+
+        .text-warning-with-bg {
+            color: var(--warning-dark);
+            background-color: var(--warning-light);
+        }
+
+        .text-danger-with-bg {
+            color: var(--danger-dark);
+            background-color: var(--danger-light);
+        }
+
+        .text-new-gray {
+            color: var(--new-gray);
+        }
+    </style>
+
     <script src="../js/sessao.js"></script>
     <script src="./../js/alerta.js"></script>
 
@@ -59,25 +131,67 @@
         </div>
     </div>
 
-    <div class="divQuizzes">
-        <div class="card" id="divQuizBiblico">
-            <h2>Quiz<br>Biblico</h2>
-            
+    <div class="pontuacaoEJogo">
+        <button id="btnIniciarQuiz" onclick="iniciarQuiz()">INICIAR QUIZ</button>
+
+        <div id="pontuacao" class="flex-colunar width-fit-content border-primary">
+            <div id="pontuacaoDuranteJogo" class="flex-colunar padding-8">
+                <span class="width-fit-content">Quantidade de acertos: <span id="spanCertas"></span></span>
+                <span class="width-fit-content">Quantidade de erros: <span id="spanErradas"></span></span>
+            </div>
+            <div id="pontuacaoFinalJogo" class="flex-colunar padding-8">
+                <span id="pontuacaoFinal" class="width-fit-content">Pontuação Final:
+                    <span id="spanPontuacaoFinal">***</span>
+                </span>
+                <span id="msgFinal" class="width-fit-content">***</span>
+            </div>
         </div>
-        
-        <div class="card" id="divQuizMilagroso">
-            <h2>Quiz<br>Milagres</h2>
-        </div>
-    
-        <div class="card" id="divQuizSacramentos">
-            <h2>Quiz<br>Sacramentos</h2>
-        </div>
-    
-        <div class="card" id="divQuizHistorico">
-            <h2>Quiz<br>Historia</h2>
+
+        <div id="jogo" class="width-fit-content flex-colunar border-secondary">
+
+            <div id="infoQuestao" class="padding-8">
+                <span>Questão atual: <span id="spanNumeroDaQuestaoAtual"></span> de <span id="qtdQuestoes"></span>
+                    questões.</span>
+            </div>
+
+            <div id="perguntaDaQuestaoAtual" class="padding-8">
+                <span id="spanQuestaoExibida" class="text-bold"></span>
+            </div>
+
+            <div id="infoAlternativas" class="padding-8">
+                <span><em>Escolha uma opção dentre as abaixo:</em></span>
+            </div>
+
+            <div id="opcoes" class="flex-colunar padding-8">
+                <span>
+                    <input type="radio" id="primeiraOpcao" name="option" class="radio" value="alternativaA" />
+                    <label for="primeiraOpcao" class="option" id="labelOpcaoUm"></label>
+                </span>
+                <span>
+                    <input type="radio" id="segundaOpcao" name="option" class="radio" value="alternativaB" />
+                    <label for="segundaOpcao" class="option" id="labelOpcaoDois"></label>
+                </span>
+                <span>
+                    <input type="radio" id="terceiraOpcao" name="option" class="radio" value="alternativaC" />
+                    <label for="terceiraOpcao" class="option" id="labelOpcaoTres"></label>
+                </span>
+                <span>
+                    <input type="radio" id="quartaOpcao" name="option" class="radio" value="alternativaD" />
+                    <label for="quartaOpcao" class="option" id="labelOpcaoQuatro"></label>
+                </span>
+            </div>
+
+            <div id="botoes" class="flex-colunar padding-8">
+                <button onclick="submeter()" id="btnSubmeter">Submeter resposta</button>
+                <button onclick="avancar()" id="btnProx" disabled>Avançar para próxima questão</button>
+                <!-- <button onclick="finalizar()" id="btnConcluir" disabled>Finalizar Quiz</button> -->
+                <button onclick="tentarNovamente()" id="btnTentarNovamente" disabled>Tentar novamente</button>
+            </div>
+
         </div>
     </div>
 </body>
+
 </html>
 <script>
     const listaDeQuestoes = [
@@ -278,14 +392,14 @@
             classComCoresParaMensagemFinal = "text-success-with-bg"
         }
 
-        textoParaMensagemFinal += "<br> Você acertou " + Math.round((porcentagemFinalDeAcertos)*100) + "% das questões."
+        textoParaMensagemFinal += "<br> Você acertou " + Math.round((porcentagemFinalDeAcertos) * 100) + "% das questões."
 
 
         document.getElementById('msgFinal').innerHTML = textoParaMensagemFinal
-        document.getElementById('msgFinal').classList.add(classComCoresParaMensagemFinal) 
+        document.getElementById('msgFinal').classList.add(classComCoresParaMensagemFinal)
         document.getElementById('spanPontuacaoFinal').innerHTML = pontuacaoFinal
 
-        document.getElementById('jogo').classList.add("text-new-gray") 
+        document.getElementById('jogo').classList.add("text-new-gray")
 
         btnProx.disabled = true
         btnSubmeter.disabled = true
@@ -294,165 +408,3 @@
 
     }
 </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- 
-    <div class="pontuacaoEJogo">
-        <button id="btnIniciarQuiz" onclick="iniciarQuiz()">INICIAR QUIZ</button>
-
-        <div id="pontuacao" class="flex-colunar width-fit-content border-primary">
-            <div id="pontuacaoDuranteJogo" class="flex-colunar padding-8">
-                <span class="width-fit-content">Quantidade de acertos: <span id="spanCertas"></span></span>
-                <span class="width-fit-content">Quantidade de erros: <span id="spanErradas"></span></span>
-            </div>
-            <div id="pontuacaoFinalJogo" class="flex-colunar padding-8">
-                <span id="pontuacaoFinal" class="width-fit-content">Pontuação Final:
-                    <span id="spanPontuacaoFinal">***</span>
-                </span>
-                <span id="msgFinal" class="width-fit-content">***</span>
-            </div>
-        </div>
-
-        <div id="jogo" class="width-fit-content flex-colunar border-secondary">
-
-            <div id="infoQuestao" class="padding-8">
-                <span>Questão atual: <span id="spanNumeroDaQuestaoAtual"></span> de <span id="qtdQuestoes"></span>
-                    questões.</span>
-            </div>
-
-            <div id="perguntaDaQuestaoAtual" class="padding-8">
-                <span id="spanQuestaoExibida" class="text-bold"></span>
-            </div>
-
-            <div id="infoAlternativas" class="padding-8">
-                <span><em>Escolha uma opção dentre as abaixo:</em></span>
-            </div>
-
-            <div id="opcoes" class="flex-colunar padding-8">
-                <span>
-                    <input type="radio" id="primeiraOpcao" name="option" class="radio" value="alternativaA" />
-                    <label for="primeiraOpcao" class="option" id="labelOpcaoUm"></label>
-                </span>
-                <span>
-                    <input type="radio" id="segundaOpcao" name="option" class="radio" value="alternativaB" />
-                    <label for="segundaOpcao" class="option" id="labelOpcaoDois"></label>
-                </span>
-                <span>
-                    <input type="radio" id="terceiraOpcao" name="option" class="radio" value="alternativaC" />
-                    <label for="terceiraOpcao" class="option" id="labelOpcaoTres"></label>
-                </span>
-                <span>
-                    <input type="radio" id="quartaOpcao" name="option" class="radio" value="alternativaD" />
-                    <label for="quartaOpcao" class="option" id="labelOpcaoQuatro"></label>
-                </span>
-            </div>
-
-            <div id="botoes" class="flex-colunar padding-8">
-                <button onclick="submeter()" id="btnSubmeter">Submeter resposta</button>
-                <button onclick="avancar()" id="btnProx" disabled>Avançar para próxima questão</button>
-                <button onclick="finalizar()" id="btnConcluir" disabled>Finalizar Quiz</button> // Comentar Linha depois
-                <button onclick="tentarNovamente()" id="btnTentarNovamente" disabled>Tentar novamente</button>
-            </div>
-
-        </div>
-    </div>
--->
