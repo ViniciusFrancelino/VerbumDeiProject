@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VerbumDei | Biblia</title>
+    <title>VerbumDei | Quiz</title>
 
     <link rel="stylesheet" href="../css/dashboards.css">
 
@@ -59,59 +59,41 @@
         </div>
     </div>
 
+    <div class="divQuizKpi">
+        <div class="divCardKpi">
+            <h2>Ultima Pontuação: </h2>
+        </div>
+        <div class="divCardKpi">
+            <h2>Ultimo Quiz: </h2>
+        </div>
+    </div>
+
     <div class="divQuizzes">
         <div class="card" id="divQuizBiblico">
-            <h2>Quiz Biblico</h2>
-            <h3>Teste seus conhecimentos bíblicos!</h3>
-            <button class="divQuizButton" onclick="quizBiblico()">Iniciar Quiz</button>
+            <button class="divQuizButton" onclick="quizBiblico()">
+                <h2>Quiz Biblico</h2>
+                <span>Iniciar Quiz</span>
+            </button>
         </div>
 
         <div class="card" id="divQuizMilagroso">
-            <h2>Quiz Milagres</h2>
-            <h3>Os milagres reconhecidos pela Igreja Católica!</h3>
-            <button class="divQuizButton" onclick="quizMilagres()">Iniciar Quiz</button>
+            <button class="divQuizButton" onclick="quizMilagres()">
+                <h2>Quiz Milagres</h2>
+                <span>Iniciar Quiz</span>
+            </button>
         </div>
-    
+
         <div class="card" id="divQuizSacramentos">
-            <h2>Quiz Sacramentos</h2>
-            <h3>Os Sacramentos da Igreja Católica!</h3>
-            <button class="divQuizButton" onclick="quizSacramentos()">Iniciar Quiz</button>
+            <button class="divQuizButton" onclick="quizSacramentos()">
+                <h2>Quiz Sacramentos</h2>
+                <span>Iniciar Quiz</span>
+            </button>
         </div>
     </div>
 </body>
+
 </html>
 <script>
-    const listaDeQuestoes = [
-
-        {
-            pergunta: "Qual mês tem 30 dias?",
-            alternativaA: "Janeiro",
-            alternativaB: "Dezembro",
-            alternativaC: "Junho",
-            alternativaD: "Agosto",
-            alternativaCorreta: "alternativaC"
-        },
-
-        {
-            pergunta: "Quantas horas tem em um dia?",
-            alternativaA: "30 horas",
-            alternativaB: "38 horas",
-            alternativaC: "48 horas",
-            alternativaD: "24 horas",
-            alternativaCorreta: "alternativaD"
-        },
-
-        {
-            pergunta: "Qual destes números é ímpar?",
-            alternativaA: "Dez",
-            alternativaB: "Doze",
-            alternativaC: "Oito",
-            alternativaD: "Onze",
-            alternativaCorreta: "alternativaD"
-        }
-
-    ]
-
     // variáveis globais    
     let numeroDaQuestaoAtual = 0
     let pontuacaoFinal = 0
@@ -120,7 +102,7 @@
     let erradas = 0
     let quantidadeDeQuestoes = listaDeQuestoes.length
     // let isUltima = numeroDaQuestaoAtual == quantidadeDeQuestoes-1 ? true : false
-
+    
     function onloadEsconder() {
         document.getElementById('pontuacao').style.display = "none"
         document.getElementById('jogo').style.display = "none"
@@ -279,14 +261,14 @@
             classComCoresParaMensagemFinal = "text-success-with-bg"
         }
 
-        textoParaMensagemFinal += "<br> Você acertou " + Math.round((porcentagemFinalDeAcertos)*100) + "% das questões."
+        textoParaMensagemFinal += "<br> Você acertou " + Math.round((porcentagemFinalDeAcertos) * 100) + "% das questões."
 
 
         document.getElementById('msgFinal').innerHTML = textoParaMensagemFinal
-        document.getElementById('msgFinal').classList.add(classComCoresParaMensagemFinal) 
+        document.getElementById('msgFinal').classList.add(classComCoresParaMensagemFinal)
         document.getElementById('spanPontuacaoFinal').innerHTML = pontuacaoFinal
 
-        document.getElementById('jogo').classList.add("text-new-gray") 
+        document.getElementById('jogo').classList.add("text-new-gray")
 
         btnProx.disabled = true
         btnSubmeter.disabled = true
@@ -294,107 +276,738 @@
         btnTentarNovamente.disabled = false
 
     }
+
+
+    const quizBiblico = [
+        {
+            "pergunta": "Qual foi o primeiro filho de Adão e Eva?",
+            "alternativaA": "Caim",
+            "alternativaB": "Sete",
+            "alternativaC": "Abel",
+            "alternativaD": "Enos",
+            "alternativaCorreta": "alternativaA"
+        },
+        {
+            "pergunta": "Como são chamados os 5 primeiros livros da Bíblia?",
+            "alternativaA": "Septuaginta",
+            "alternativaB": "Profecias",
+            "alternativaC": "Pentateuco",
+            "alternativaD": "Cartas",
+            "alternativaCorreta": "alternativaC"
+        },
+        {
+            "pergunta": "Qual foi a décima praga do Egito?",
+            "alternativaA": "Morte dos primogênitos",
+            "alternativaB": "Gafanhotos",
+            "alternativaC": "Piolhos",
+            "alternativaD": "Trevas",
+            "alternativaCorreta": "alternativaA"
+        },
+        {
+            "pergunta": "Qual o maior livro da Bíblia?",
+            "alternativaA": "João",
+            "alternativaB": "Salmos",
+            "alternativaC": "Gênesis",
+            "alternativaD": "Isaías",
+            "alternativaCorreta": "alternativaB"
+        },
+        {
+            "pergunta": "Qual dos apóstolos de Cristo era cobrador de impostos?",
+            "alternativaA": "Judas",
+            "alternativaB": "Levi Mateus",
+            "alternativaC": "Natanael",
+            "alternativaD": "Tomé",
+            "alternativaCorreta": "alternativaB"
+        },
+        {
+            "pergunta": "Qual desses homens morreu decapitado?",
+            "alternativaA": "Pedro",
+            "alternativaB": "Tiago",
+            "alternativaC": "João Batista",
+            "alternativaD": "Estevão",
+            "alternativaCorreta": "alternativaC"
+        },
+        {
+            "pergunta": "Em que livro da Bíblia se conta a história da torre de Babel?",
+            "alternativaA": "Daniel",
+            "alternativaB": "Josué",
+            "alternativaC": "Gênesis",
+            "alternativaD": "Êxodo",
+            "alternativaCorreta": "alternativaC"
+        },
+        {
+            "pergunta": "Que personagem bíblico lavou as mãos em público?",
+            "alternativaA": "Pilatos",
+            "alternativaB": "Naamã",
+            "alternativaC": "Caifás",
+            "alternativaD": "Herodes",
+            "alternativaCorreta": "alternativaA"
+        },
+        {
+            "pergunta": "Qual profeta fala sobre um vale de ossos secos?",
+            "alternativaA": "Isaías",
+            "alternativaB": "Oséias",
+            "alternativaC": "Ezequiel",
+            "alternativaD": "Jeremias",
+            "alternativaCorreta": "alternativaC"
+        },
+        {
+            "pergunta": "Quem foi vendido como escravo pelos próprios irmãos?",
+            "alternativaA": "José",
+            "alternativaB": "Judá",
+            "alternativaC": "Benjamim",
+            "alternativaD": "Esaú",
+            "alternativaCorreta": "alternativaA"
+        },
+        {
+            "pergunta": "Quem mandou prender João Batista?",
+            "alternativaA": "Pilatos",
+            "alternativaB": "César",
+            "alternativaC": "Herodes",
+            "alternativaD": "Caifás",
+            "alternativaCorreta": "alternativaC"
+        },
+        {
+            "pergunta": "Qual desses homens ficou cego ao ver Jesus?",
+            "alternativaA": "Paulo",
+            "alternativaB": "Bartimeu",
+            "alternativaC": "Jairo",
+            "alternativaD": "Zaqueu",
+            "alternativaCorreta": "alternativaA"
+        },
+        {
+            "pergunta": "Qual era o ofício de Davi antes de ser rei?",
+            "alternativaA": "Pedreiro",
+            "alternativaB": "Caçador",
+            "alternativaC": "Pastor de ovelhas",
+            "alternativaD": "Carpinteiro",
+            "alternativaCorreta": "alternativaC"
+        },
+        {
+            "pergunta": "Qual dom os discípulos receberam no Pentecostes?",
+            "alternativaA": "Curas",
+            "alternativaB": "Profecias",
+            "alternativaC": "Línguas",
+            "alternativaD": "Milagres",
+            "alternativaCorreta": "alternativaC"
+        },
+        {
+            "pergunta": "Qual livro fala da luta entre Miguel e o Dragão?",
+            "alternativaA": "Apocalipse",
+            "alternativaB": "Malaquias",
+            "alternativaC": "Habacuque",
+            "alternativaD": "Jó",
+            "alternativaCorreta": "alternativaA"
+        },
+        {
+            "pergunta": "Qual desses foi ressuscitado por Jesus após 4 dias sepultado?",
+            "alternativaA": "Jairo",
+            "alternativaB": "Jovem rico",
+            "alternativaC": "Lázaro",
+            "alternativaD": "Jonas",
+            "alternativaCorreta": "alternativaC"
+        },
+        {
+            "pergunta": "Quem contou a história das 10 virgens?",
+            "alternativaA": "Jesus",
+            "alternativaB": "Daniel",
+            "alternativaC": "Paulo",
+            "alternativaD": "João",
+            "alternativaCorreta": "alternativaA"
+        },
+        {
+            "pergunta": "Onde Jesus fez seu primeiro milagre?",
+            "alternativaA": "Rio Jordão",
+            "alternativaB": "Casamento",
+            "alternativaC": "Sinagoga",
+            "alternativaD": "Deserto",
+            "alternativaCorreta": "alternativaB"
+        },
+        {
+            "pergunta": "Quem foi o homem mais velho da Bíblia?",
+            "alternativaA": "Adão",
+            "alternativaB": "Lameque",
+            "alternativaC": "Matusalém",
+            "alternativaD": "Noé",
+            "alternativaCorreta": "alternativaC"
+        },
+        {
+            "pergunta": "Quem matou Caim?",
+            "alternativaA": "Abel",
+            "alternativaB": "Adão",
+            "alternativaC": "Não se sabe",
+            "alternativaD": "Ninguém",
+            "alternativaCorreta": "alternativaD"
+        },
+        {
+            "pergunta": "Qual filho de Jacó foi governador do Egito?",
+            "alternativaA": "Judá",
+            "alternativaB": "Moisés",
+            "alternativaC": "José",
+            "alternativaD": "Levi",
+            "alternativaCorreta": "alternativaC"
+        },
+        {
+            "pergunta": "Quem foi o rei que pediu sabedoria a Deus?",
+            "alternativaA": "Saul",
+            "alternativaB": "Davi",
+            "alternativaC": "Salomão",
+            "alternativaD": "Ezequias",
+            "alternativaCorreta": "alternativaC"
+        },
+        {
+            "pergunta": "Qual apóstolo negou Jesus três vezes?",
+            "alternativaA": "João",
+            "alternativaB": "Tomé",
+            "alternativaC": "Pedro",
+            "alternativaD": "Tiago",
+            "alternativaCorreta": "alternativaC"
+        },
+        {
+            "pergunta": "Em qual salmo se encontra a frase “O Senhor é o meu pastor”?",
+            "alternativaA": "Salmo 1",
+            "alternativaB": "Salmo 23",
+            "alternativaC": "Salmo 46",
+            "alternativaD": "Salmo 91",
+            "alternativaCorreta": "alternativaB"
+        },
+        {
+            "pergunta": "Quem escreveu o livro de Atos?",
+            "alternativaA": "Paulo",
+            "alternativaB": "João",
+            "alternativaC": "Lucas",
+            "alternativaD": "Pedro",
+            "alternativaCorreta": "alternativaC"
+        },
+        {
+            "pergunta": "Quem cortou a orelha do servo do sumo sacerdote?",
+            "alternativaA": "João",
+            "alternativaB": "Tiago",
+            "alternativaC": "Pedro",
+            "alternativaD": "Tomé",
+            "alternativaCorreta": "alternativaC"
+        },
+        {
+            "pergunta": "Quem foi a esposa de Isaque?",
+            "alternativaA": "Raquel",
+            "alternativaB": "Rebeca",
+            "alternativaC": "Sara",
+            "alternativaD": "Lia",
+            "alternativaCorreta": "alternativaB"
+        },
+        {
+            "pergunta": "Qual discípulo cuidou de Maria após a morte de Jesus?",
+            "alternativaA": "Pedro",
+            "alternativaB": "Tiago",
+            "alternativaC": "João",
+            "alternativaD": "André",
+            "alternativaCorreta": "alternativaC"
+        },
+        {
+            "pergunta": "Quem foi irmão de Moisés?",
+            "alternativaA": "Josué",
+            "alternativaB": "Arão",
+            "alternativaC": "Calebe",
+            "alternativaD": "Eleazar",
+            "alternativaCorreta": "alternativaB"
+        },
+        {
+            "pergunta": "Quem escreveu a maioria das cartas do Novo Testamento?",
+            "alternativaA": "João",
+            "alternativaB": "Paulo",
+            "alternativaC": "Pedro",
+            "alternativaD": "Tiago",
+            "alternativaCorreta": "alternativaB"
+        }
+    ]
+
+
+    const quizSacramentos = [
+        {
+            "pergunta": "O que são os sacramentos na Igreja Católica?",
+            "alternativaA": "Leis civis",
+            "alternativaB": "Sinais visíveis da graça de Deus",
+            "alternativaC": "Objetos de culto",
+            "alternativaD": "Orações obrigatórias",
+            "alternativaCorreta": "alternativaB"
+        },
+        {
+            "pergunta": "Quantos sacramentos existem na Igreja Católica?",
+            "alternativaA": "3",
+            "alternativaB": "5",
+            "alternativaC": "7",
+            "alternativaD": "10",
+            "alternativaCorreta": "alternativaC"
+        },
+        {
+            "pergunta": "Qual destes é um sacramento de iniciação cristã?",
+            "alternativaA": "Ordem",
+            "alternativaB": "Crisma",
+            "alternativaC": "Matrimônio",
+            "alternativaD": "Unção dos Enfermos",
+            "alternativaCorreta": "alternativaB"
+        },
+        {
+            "pergunta": "Qual sacramento apaga o pecado original?",
+            "alternativaA": "Batismo",
+            "alternativaB": "Eucaristia",
+            "alternativaC": "Crisma",
+            "alternativaD": "Ordem",
+            "alternativaCorreta": "alternativaA"
+        },
+        {
+            "pergunta": "Qual sacramento é conhecido como 'o pão da vida'?",
+            "alternativaA": "Unção dos enfermos",
+            "alternativaB": "Eucaristia",
+            "alternativaC": "Confirmação",
+            "alternativaD": "Ordem",
+            "alternativaCorreta": "alternativaB"
+        },
+        {
+            "pergunta": "Quem administra normalmente o sacramento da Ordem?",
+            "alternativaA": "Qualquer cristão",
+            "alternativaB": "O bispo",
+            "alternativaC": "O catequista",
+            "alternativaD": "O padrinho",
+            "alternativaCorreta": "alternativaB"
+        },
+        {
+            "pergunta": "O Matrimônio une quem?",
+            "alternativaA": "Dois sacerdotes",
+            "alternativaB": "Duas famílias",
+            "alternativaC": "Um homem e uma mulher",
+            "alternativaD": "Dois diáconos",
+            "alternativaCorreta": "alternativaC"
+        },
+        {
+            "pergunta": "Qual sacramento nos reconcilia com Deus após o pecado?",
+            "alternativaA": "Crisma",
+            "alternativaB": "Confissão",
+            "alternativaC": "Ordem",
+            "alternativaD": "Batismo",
+            "alternativaCorreta": "alternativaB"
+        },
+        {
+            "pergunta": "Que matéria é usada no Batismo?",
+            "alternativaA": "Óleo",
+            "alternativaB": "Água",
+            "alternativaC": "Vinho",
+            "alternativaD": "Sal",
+            "alternativaCorreta": "alternativaB"
+        },
+        {
+            "pergunta": "A Crisma também é chamada de:",
+            "alternativaA": "Penitência",
+            "alternativaB": "Confirmação",
+            "alternativaC": "Consagração",
+            "alternativaD": "Renovação",
+            "alternativaCorreta": "alternativaB"
+        },
+        {
+            "pergunta": "Quantos sacramentos são considerados 'de serviço da comunhão'?",
+            "alternativaA": "1",
+            "alternativaB": "2",
+            "alternativaC": "3",
+            "alternativaD": "4",
+            "alternativaCorreta": "alternativaB"
+        },
+        {
+            "pergunta": "Qual sacramento completa a graça recebida no Batismo?",
+            "alternativaA": "Confissão",
+            "alternativaB": "Eucaristia",
+            "alternativaC": "Unção dos Enfermos",
+            "alternativaD": "Crisma",
+            "alternativaCorreta": "alternativaD"
+        },
+        {
+            "pergunta": "Qual é a forma sacramental da Eucaristia?",
+            "alternativaA": "“Eu te batizo…”",
+            "alternativaB": "“Isto é o meu Corpo; este é o cálice do meu Sangue.”",
+            "alternativaC": "“Recebe o selo do Espírito Santo.”",
+            "alternativaD": "“Eu te absolvo dos teus pecados.”",
+            "alternativaCorreta": "alternativaB"
+        },
+        {
+            "pergunta": "Em circunstâncias extremas, quem pode batizar?",
+            "alternativaA": "Somente o pároco",
+            "alternativaB": "Apenas o bispo",
+            "alternativaC": "Qualquer pessoa com intenção reta",
+            "alternativaD": "Somente um diácono",
+            "alternativaCorreta": "alternativaC"
+        },
+        {
+            "pergunta": "A Unção dos Enfermos só pode ser recebida:",
+            "alternativaA": "Uma vez na vida",
+            "alternativaB": "Apenas por idosos",
+            "alternativaC": "Sempre que houver grave enfermidade",
+            "alternativaD": "Apenas antes da morte certa",
+            "alternativaCorreta": "alternativaC"
+        },
+        {
+            "pergunta": "No sacramento da Penitência, o arrependimento é chamado de:",
+            "alternativaA": "Contrição",
+            "alternativaB": "Consagração",
+            "alternativaC": "Iluminação",
+            "alternativaD": "Inspiração",
+            "alternativaCorreta": "alternativaA"
+        },
+        {
+            "pergunta": "Em qual sacramento ocorre a transubstanciação?",
+            "alternativaA": "Batismo",
+            "alternativaB": "Eucaristia",
+            "alternativaC": "Crisma",
+            "alternativaD": "Ordem",
+            "alternativaCorreta": "alternativaB"
+        },
+        {
+            "pergunta": "Quantos graus possui o sacramento da Ordem?",
+            "alternativaA": "1",
+            "alternativaB": "2",
+            "alternativaC": "3",
+            "alternativaD": "4",
+            "alternativaCorreta": "alternativaC"
+        },
+        {
+            "pergunta": "O Matrimônio é válido quando:",
+            "alternativaA": "Há consentimento livre dos noivos",
+            "alternativaB": "Há festa grande",
+            "alternativaC": "O padre escolhe os noivos",
+            "alternativaD": "Os noivos têm padrinhos",
+            "alternativaCorreta": "alternativaA"
+        },
+        {
+            "pergunta": "A principal finalidade da Confirmação é:",
+            "alternativaA": "Curar o corpo",
+            "alternativaB": "Fortalecer o cristão com o Espírito Santo",
+            "alternativaC": "Perdoar pecados mortais",
+            "alternativaD": "Aumentar a fé automaticamente",
+            "alternativaCorreta": "alternativaB"
+        },
+        {
+            "pergunta": "Qual dos sacramentos imprime 'caráter indelével'?",
+            "alternativaA": "Batismo, Crisma e Ordem",
+            "alternativaB": "Batismo, Matrimônio e Eucaristia",
+            "alternativaC": "Ordem, Penitência e Unção",
+            "alternativaD": "Crisma, Eucaristia e Batismo",
+            "alternativaCorreta": "alternativaA"
+        },
+        {
+            "pergunta": "Como a Igreja define sacramentalmente o Matrimônio?",
+            "alternativaA": "Um contrato civil",
+            "alternativaB": "Uma união espiritual entre fiéis",
+            "alternativaC": "Uma aliança irrevogável entre um homem e uma mulher",
+            "alternativaD": "Um compromisso social",
+            "alternativaCorreta": "alternativaC"
+        },
+        {
+            "pergunta": "Qual é a matéria usada no sacramento da Ordem?",
+            "alternativaA": "Água",
+            "alternativaB": "Imposição das mãos",
+            "alternativaC": "Óleo do Crisma",
+            "alternativaD": "Vinho",
+            "alternativaCorreta": "alternativaB"
+        },
+        {
+            "pergunta": "A absolvição sacramental exige qual ato essencial do penitente?",
+            "alternativaA": "Lembrar todos os pecados veniais",
+            "alternativaB": "Fazer jejum",
+            "alternativaC": "Confessar os pecados mortais",
+            "alternativaD": "Prometer perfeição total",
+            "alternativaCorreta": "alternativaC"
+        },
+        {
+            "pergunta": "A teologia dos sacramentos se baseia principalmente em qual parte da Bíblia?",
+            "alternativaA": "Apocalipse",
+            "alternativaB": "Evangelhos e Cartas Apostólicas",
+            "alternativaC": "Livros Sapienciais",
+            "alternativaD": "Profetas",
+            "alternativaCorreta": "alternativaB"
+        },
+        {
+            "pergunta": "O efeito próprio da Unção dos Enfermos é:",
+            "alternativaA": "Perdoar todos os pecados automaticamente",
+            "alternativaB": "Comunicar a graça de fortaleza, paz e coragem",
+            "alternativaC": "Curar fisicamente sempre",
+            "alternativaD": "Conferir o Espírito Santo pela primeira vez",
+            "alternativaCorreta": "alternativaB"
+        },
+        {
+            "pergunta": "O ministro ordinário da Crisma é:",
+            "alternativaA": "O pároco",
+            "alternativaB": "O diácono",
+            "alternativaC": "O bispo",
+            "alternativaD": "Um ministro extraordinário",
+            "alternativaCorreta": "alternativaC"
+        },
+        {
+            "pergunta": "Em caso de necessidade, quem pode administrar a Eucaristia?",
+            "alternativaA": "Qualquer fiel",
+            "alternativaB": "Somente ministros ordenados (bispo, padre)",
+            "alternativaC": "Diáconos consagrados por emergência",
+            "alternativaD": "Catequistas",
+            "alternativaCorreta": "alternativaB"
+        },
+        {
+            "pergunta": "No Matrimônio, quem são os verdadeiros ministros do sacramento?",
+            "alternativaA": "O padre",
+            "alternativaB": "Os padrinhos",
+            "alternativaC": "Os próprios noivos",
+            "alternativaD": "O bispo",
+            "alternativaCorreta": "alternativaC"
+        },
+        {
+            "pergunta": "A eficácia dos sacramentos ocorre 'ex opere operato', o que significa:",
+            "alternativaA": "Que depende da santidade do ministro",
+            "alternativaB": "Que opera pela força do próprio rito sacramental",
+            "alternativaC": "Que depende da fé da assembleia",
+            "alternativaD": "Que somente funciona quando há milagres",
+            "alternativaCorreta": "alternativaB"
+        }
+    ]
+
+    const quizMilagres = [
+        {
+            "pergunta": "O que a Igreja Católica exige antes de reconhecer oficialmente um milagre?",
+            "alternativaA": "Um documento histórico",
+            "alternativaB": "Testemunho de um bispo apenas",
+            "alternativaC": "Uma investigação rigorosa e aprovação do Vaticano",
+            "alternativaD": "Uma votação pública",
+            "alternativaCorreta": "alternativaC"
+        },
+        {
+            "pergunta": "O “Milagre de Lanciano”, relacionado à Eucaristia, envolve qual fenômeno?",
+            "alternativaA": "Sangue transformado em vinho",
+            "alternativaB": "Hóstia que se tornou carne e sangue humanos",
+            "alternativaC": "Multiplicação de hóstias",
+            "alternativaD": "Cura instantânea de um sacerdote",
+            "alternativaCorreta": "alternativaB"
+        },
+        {
+            "pergunta": "Em Lourdes, na França, os milagres reconhecidos pela Igreja envolvem principalmente:",
+            "alternativaA": "Aparições de anjos",
+            "alternativaB": "Curas físicas sem explicação médica",
+            "alternativaC": "Objetos que levitam",
+            "alternativaD": "Perfumes misteriosos",
+            "alternativaCorreta": "alternativaB"
+        },
+        {
+            "pergunta": "Quantas curas em Lourdes foram oficialmente reconhecidas pela Igreja até hoje (aproximadamente)?",
+            "alternativaA": "Mais de 70",
+            "alternativaB": "Mais de 700",
+            "alternativaC": "Mais de 7.000",
+            "alternativaD": "Apenas 7",
+            "alternativaCorreta": "alternativaA"
+        },
+        {
+            "pergunta": "Qual órgão médico independente avalia supostos milagres em Lourdes?",
+            "alternativaA": "Conselho Médico Francês Universal",
+            "alternativaB": "Bureau Médico de Lourdes",
+            "alternativaC": "Organização Mundial da Saúde",
+            "alternativaD": "Academia Real de Medicina",
+            "alternativaCorreta": "alternativaB"
+        },
+        {
+            "pergunta": "O milagre atribuído à intercessão de Santa Bernadette envolveu:",
+            "alternativaA": "Ressurreição",
+            "alternativaB": "Cura súbita de câncer avançado",
+            "alternativaC": "Estigmas",
+            "alternativaD": "Visão que durou 24 horas",
+            "alternativaCorreta": "alternativaB"
+        },
+        {
+            "pergunta": "Para canonizar um santo, geralmente é necessário:",
+            "alternativaA": "Apenas um milagre",
+            "alternativaB": "Dois milagres reconhecidos após análise",
+            "alternativaC": "Quatro milagres obrigatórios",
+            "alternativaD": "Nenhum milagre é necessário",
+            "alternativaCorreta": "alternativaB"
+        },
+        {
+            "pergunta": "O Milagre do Sol em Fátima (1917) foi testemunhado por:",
+            "alternativaA": "Poucas dezenas de pessoas",
+            "alternativaB": "Apenas três crianças",
+            "alternativaC": "Entre 30.000 e 70.000 pessoas",
+            "alternativaD": "Turistas estrangeiros isolados",
+            "alternativaCorreta": "alternativaC"
+        },
+        {
+            "pergunta": "Qual fenômeno foi relatado no Milagre do Sol?",
+            "alternativaA": "O sol caiu no horizonte",
+            "alternativaB": "O sol girou e emitiu luzes coloridas",
+            "alternativaC": "O sol desapareceu",
+            "alternativaD": "A lua apareceu durante o dia",
+            "alternativaCorreta": "alternativaB"
+        },
+        {
+            "pergunta": "A Igreja analisa supostos milagres por meio de:",
+            "alternativaA": "Astrólogos",
+            "alternativaB": "Bispos e comissões científicas",
+            "alternativaC": "Eleições",
+            "alternativaD": "Sorteio",
+            "alternativaCorreta": "alternativaB"
+        },
+        {
+            "pergunta": "O Milagre Eucarístico de Siena é conhecido por:",
+            "alternativaA": "Sangue que ferveu",
+            "alternativaB": "Hóstias preservadas por séculos sem deterioração",
+            "alternativaC": "Luzes misteriosas",
+            "alternativaD": "Curas instantâneas",
+            "alternativaCorreta": "alternativaB"
+        },
+        {
+            "pergunta": "Em casos de cura reconhecida pela Igreja, o requisito básico é:",
+            "alternativaA": "Cura lenta e previsível",
+            "alternativaB": "Cura súbita, completa e sem explicação médica",
+            "alternativaC": "Testemunho de família",
+            "alternativaD": "Tratamento médico intensivo",
+            "alternativaCorreta": "alternativaB"
+        },
+        {
+            "pergunta": "Qual milagre eucarístico envolveu análises laboratoriais indicando tecido cardíaco humano?",
+            "alternativaA": "Fátima",
+            "alternativaB": "Lanciano",
+            "alternativaC": "Guadalupe",
+            "alternativaD": "La Salette",
+            "alternativaCorreta": "alternativaB"
+        },
+        {
+            "pergunta": "A tilma de Nossa Senhora de Guadalupe impressiona pesquisadores porque:",
+            "alternativaA": "Brilha no escuro",
+            "alternativaB": "Não se deteriora facilmente e apresenta características incomuns",
+            "alternativaC": "É feita de ouro puro",
+            "alternativaD": "Emite sons",
+            "alternativaCorreta": "alternativaB"
+        },
+        {
+            "pergunta": "O “milagre da liquefação do sangue de São Januário” ocorre em:",
+            "alternativaA": "Roma",
+            "alternativaB": "Nápoles",
+            "alternativaC": "Lisboa",
+            "alternativaD": "Paris",
+            "alternativaCorreta": "alternativaB"
+        },
+        {
+            "pergunta": "O sangue de São Januário é famoso por:",
+            "alternativaA": "Congelar subitamente",
+            "alternativaB": "Se liquefazer em datas específicas",
+            "alternativaC": "Evaporar",
+            "alternativaD": "Brilhar ao sol",
+            "alternativaCorreta": "alternativaB"
+        },
+        {
+            "pergunta": "A Igreja somente declara um milagre quando:",
+            "alternativaA": "A mídia confirma",
+            "alternativaB": "Médicos e teólogos descartam explicações naturais",
+            "alternativaC": "O Papa deseja",
+            "alternativaD": "A população exige",
+            "alternativaCorreta": "alternativaB"
+        },
+        {
+            "pergunta": "Em Fátima, além do Milagre do Sol, foram relatadas:",
+            "alternativaA": "Curas, conversões e fenômenos luminosos",
+            "alternativaB": "Placas de metal caindo do céu",
+            "alternativaC": "Chuvas de pedras",
+            "alternativaD": "Vozes misteriosas nas árvores",
+            "alternativaCorreta": "alternativaA"
+        },
+        {
+            "pergunta": "O Corpo Incorrupto de Santa Bernadette é frequentemente citado como exemplo de:",
+            "alternativaA": "Milagre eucarístico",
+            "alternativaB": "Fenômeno de preservação incomum",
+            "alternativaC": "Estigma",
+            "alternativaD": "Teletransporte",
+            "alternativaCorreta": "alternativaB"
+        },
+        {
+            "pergunta": "O Milagre de Sor Teresa de Calcutá para sua canonização envolveu:",
+            "alternativaA": "Cura de infertilidade",
+            "alternativaB": "Cura súbita de tumor cerebral",
+            "alternativaC": "Cura de doença cardíaca",
+            "alternativaD": "Cura de distúrbio mental",
+            "alternativaCorreta": "alternativaB"
+        },
+        {
+            "pergunta": "Em investigações de milagres, a Igreja consulta frequentemente:",
+            "alternativaA": "Especialistas médicos independentes",
+            "alternativaB": "Somente padres",
+            "alternativaC": "Jornalistas",
+            "alternativaD": "Astrólogos",
+            "alternativaCorreta": "alternativaA"
+        },
+        {
+            "pergunta": "A cura atribuída a João Paulo II envolveu:",
+            "alternativaA": "Doença óssea",
+            "alternativaB": "Síndrome neurológica grave em uma freira",
+            "alternativaC": "Cegueira",
+            "alternativaD": "Doença pulmonar",
+            "alternativaCorreta": "alternativaB"
+        },
+        {
+            "pergunta": "O que diferencia uma “cura milagrosa” segundo critérios da Igreja?",
+            "alternativaA": "A pessoa precisa ser famosa",
+            "alternativaB": "Deve ser instantânea, completa e duradoura",
+            "alternativaC": "Deve ocorrer durante uma celebração",
+            "alternativaD": "Deve ser filmada",
+            "alternativaCorreta": "alternativaB"
+        },
+        {
+            "pergunta": "O Milagre Eucarístico de Buenos Aires (1996) foi analisado por cientistas e mostrou:",
+            "alternativaA": "Fragmentos de ouro",
+            "alternativaB": "Tecido cardíaco humano sob estresse",
+            "alternativaC": "Elementos de planta",
+            "alternativaD": "Cristais desconhecidos",
+            "alternativaCorreta": "alternativaB"
+        },
+        {
+            "pergunta": "Muitas investigações de milagres incluem análise de:",
+            "alternativaA": "DNA, tecidos e condições ambientais",
+            "alternativaB": "Horóscopo",
+            "alternativaC": "Meteorologia",
+            "alternativaD": "Numerologia",
+            "alternativaCorreta": "alternativaA"
+        },
+        {
+            "pergunta": "A Igreja aceita um milagre somente quando:",
+            "alternativaA": "Não há explicação natural suficiente",
+            "alternativaB": "É popular na internet",
+            "alternativaC": "Vem de tradição oral apenas",
+            "alternativaD": "Há uma imagem fotográfica",
+            "alternativaCorreta": "alternativaA"
+        },
+        {
+            "pergunta": "O Milagre de Calanda (Espanha, 1640) é conhecido pela:",
+            "alternativaA": "Regeneração repentina de perna amputada",
+            "alternativaB": "Cura de cegueira",
+            "alternativaC": "Multiplicação de alimentos",
+            "alternativaD": "Previsão do futuro",
+            "alternativaCorreta": "alternativaA"
+        },
+        {
+            "pergunta": "O Milagre de Loreto envolve:",
+            "alternativaA": "Casa atribuída à família de Maria",
+            "alternativaB": "Estigmas",
+            "alternativaC": "Cura de doenças cardíacas",
+            "alternativaD": "Multiplicação de flores",
+            "alternativaCorreta": "alternativaA"
+        },
+        {
+            "pergunta": "O Milagre de Bolsena (1263) está ligado ao início de qual festa?",
+            "alternativaA": "Imaculada Conceição",
+            "alternativaB": "Corpus Christi",
+            "alternativaC": "Assunção",
+            "alternativaD": "Pentecostes",
+            "alternativaCorreta": "alternativaB"
+        },
+        {
+            "pergunta": "A Igreja considera que a ciência:",
+            "alternativaA": "É inimiga da fé",
+            "alternativaB": "Pode ajudar a discernir milagres",
+            "alternativaC": "Nunca é utilizada",
+            "alternativaD": "Substitui a oração",
+            "alternativaCorreta": "alternativaB"
+        }
+    ]
 </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 <!-- 
     <div class="pontuacaoEJogo">
