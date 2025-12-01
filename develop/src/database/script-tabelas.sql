@@ -6,7 +6,6 @@ CREATE TABLE usuario (
 	nome VARCHAR(50),
 	email VARCHAR(50),
 	senha VARCHAR(50),
-	fk_empresa INT
 );
 
 CREATE TABLE aviso (
@@ -23,7 +22,7 @@ CREATE TABLE quizPergunta (
 	id INT PRIMARY KEY AUTO_INCREMENT,
 	pergunta VARCHAR(100) NOT NULL UNIQUE,
 	categoria VARCHAR(10) NOT NULL,
-	CONSTRAINT chkCategoria CHECK (categoria IN('Biblica', 'Milagres', 'Sacramento', 'Historia')),
+	CONSTRAINT chkCategoria CHECK (categoria IN('Biblica', 'Milagres', 'Sacramento')),
 	dificuldade VARCHAR(7) NOT NULL,
 	CONSTRAINT chkDificuldade CHECK (categoria IN('Facil', 'Medio', 'Dificil')),
 	status BOOLEAN NOT NULL
@@ -66,3 +65,33 @@ CREATE TABLE novoTestamento (
     descricao TEXT NOT NULL,
     FOREIGN KEY (idLivro) REFERENCES indiceBiblia(id)
 );
+
+
+INSERT INTO indiceBiblia (livro, ordem) VALUES
+('mateus', 1),
+('marcos', 2),
+('lucas', 3),
+('joao', 4),
+('atos', 5),
+('romanos', 6),
+('i_corintios', 7),
+('ii_corintios', 8),
+('galatas', 9),
+('efesios', 10),
+('filipenses', 11),
+('colossenses', 12),
+('i_tessalonicense', 13),
+('ii_tessalonicense', 14),
+('i_timoteo', 15),
+('ii_timoteo', 16),
+('tito', 17),
+('filemon', 18),
+('hebreus', 19),
+('tiago', 20),
+('i_pedro', 21),
+('ii_pedro', 22),
+('i_joao', 23),
+('ii_joao', 24),
+('iii_joao', 25),
+('judas', 26),
+('apocalipse', 27);
