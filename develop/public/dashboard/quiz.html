@@ -19,9 +19,9 @@
         rel="stylesheet">
 </head>
 
-<body onload="validarSessao()">
+<body class="quizBody" onload="validarSessao()">
 
-    <div class="divOptionSide">
+    <div id="idivOptionSide" class="divOptionSide">
         <div class="divOptionLogo">
             <img src="../assets/imgs/logo-Invert.png" alt="Logo VerbumDei Invertido">
         </div>
@@ -59,71 +59,195 @@
         </div>
     </div>
 
-    <div class="divQuizKpi">
+    <div id="iDivQuizKpi" class="divQuizKpi">
         <div class="divCardKpi">
             <h2>Ultima Pontuação: </h2>
+            <span>5</span>
         </div>
         <div class="divCardKpi">
             <h2>Ultimo Quiz: </h2>
+            <span>Biblico</span>
         </div>
     </div>
 
-    <div class="divQuizzes">
+    <div id="iDivQuizzes" class="divQuizzes">
         <div class="card" id="divQuizBiblico">
-            <button class="divQuizButton" onclick="quizBiblico()">
+            <button class="divQuizButton" onclick="iniciarQuizBiblico()">
                 <h2>Quiz Biblico</h2>
                 <span>Iniciar Quiz</span>
             </button>
         </div>
 
         <div class="card" id="divQuizMilagroso">
-            <button class="divQuizButton" onclick="quizMilagres()">
+            <button class="divQuizButton" onclick="iniciarQuizMilagres()">
                 <h2>Quiz Milagres</h2>
                 <span>Iniciar Quiz</span>
             </button>
         </div>
 
         <div class="card" id="divQuizSacramentos">
-            <button class="divQuizButton" onclick="quizSacramentos()">
+            <button class="divQuizButton" onclick="iniciarQuizSacramentos()">
                 <h2>Quiz Sacramentos</h2>
                 <span>Iniciar Quiz</span>
             </button>
         </div>
     </div>
+
+    <div id="iDivQuizTentativa" class="divQuizTentativa">
+        <div id="iDivInfoQuestao" class="divInfoQuestao">
+            <span>Questão atual: <span id="spanNumeroDaQuestaoAtual"></span> de <span id="qtdQuestoes"></span>
+                questões.</span>
+        </div>
+
+        <div id="iDivPerguntaAtual" class="divPerguntaAtual">
+            <span id="spanQuestaoExibida" class="text-bold"></span>
+        </div>
+
+        <div id="iDivOptions" class="divOptions">
+            <span>
+                <input type="radio" id="primeiraOpcao" name="option" class="radio" value="alternativaA" />
+                <label for="primeiraOpcao" class="option" id="labelOpcaoUm"></label>
+            </span>
+            <span>
+                <input type="radio" id="segundaOpcao" name="option" class="radio" value="alternativaB" />
+                <label for="segundaOpcao" class="option" id="labelOpcaoDois"></label>
+            </span>
+            <span>
+                <input type="radio" id="terceiraOpcao" name="option" class="radio" value="alternativaC" />
+                <label for="terceiraOpcao" class="option" id="labelOpcaoTres"></label>
+            </span>
+            <span>
+                <input type="radio" id="quartaOpcao" name="option" class="radio" value="alternativaD" />
+                <label for="quartaOpcao" class="option" id="labelOpcaoQuatro"></label>
+            </span>
+        </div>
+
+        <div id="iDivButtons" class="divButtons">
+            <button id="iButtonSubmeter" onclick="submeter()">Submeter</button>
+            <button id="iButtonAvancar" onclick="avancar()">Avançar</button>
+        </div>
+    </div>
+
+    <div id="pontuacao" class="flex-colunar width-fit-content border-primary">
+        <div id="pontuacaoDuranteJogo" class="flex-colunar padding-8">
+            <span class="width-fit-content">Quantidade de acertos: <span id="spanCertas"></span></span>
+            <span class="width-fit-content">Quantidade de erros: <span id="spanErradas"></span></span>
+        </div>
+        <div id="pontuacaoFinalJogo" class="flex-colunar padding-8">
+            <span id="pontuacaoFinal" class="width-fit-content">Pontuação Final:
+                <span id="spanPontuacaoFinal">***</span>
+            </span>
+            <span id="msgFinal" class="width-fit-content">***</span>
+        </div>
+    </div>
 </body>
 
 </html>
+
 <script>
-    // variáveis globais    
-    let numeroDaQuestaoAtual = 0
-    let pontuacaoFinal = 0
-    let tentativaIncorreta = 0
-    let certas = 0
-    let erradas = 0
-    let quantidadeDeQuestoes = listaDeQuestoes.length
-    // let isUltima = numeroDaQuestaoAtual == quantidadeDeQuestoes-1 ? true : false
 
-    function iniciarQuiz() {
-        document.getElementById('pontuacao').style.display = "flex"
-        document.getElementById('jogo').style.display = "flex"
-        document.getElementById('btnIniciarQuiz').style.display = "none"
+    // Variáveis Globais;
+    let perguntasAleatorias = [];
+    let pontuacaoFinal = 0;
+    let tentativaIncorreta = 0;
+    let certas = 0;
+    let erradas = 0;
+    let quantidadeDeQuestoes = 10;
 
-        document.getElementById('qtdQuestoes').innerHTML = quantidadeDeQuestoes
+    function iniciarQuizBiblico() {
+        // Esconder elementos da tela e exibir apenas o quiz;
+        document.getElementById("idivOptionSide").style.display = "none";
+        document.getElementById("iDivQuizKpi").style.display = "none";
+        document.getElementById("iDivQuizzes").style.display = "none";
+        document.getElementById("iDivQuizTentativa").style.display = "flex";
 
-        preencherHTMLcomQuestaoAtual(0)
+        // For para Pegar 10 numeros aleatorios entre 0 e 29 para questões
+        for (let i = 0; i < 10; i++) {
+            let numeroAleatorio = Number((Math.random() * 30 - 1).toFixed(0));
+            perguntasAleatorias.push(perguntasQuizBiblico[numeroAleatorio]);
+        }
 
-        btnSubmeter.disabled = false
-        btnProx.disabled = true
-        // btnConcluir.disabled = true
-        btnTentarNovamente.disabled = true
+        // Exibir Perguntas na console;
+        console.log(perguntasAleatorias);
+
+        // Exibir Quantidade de Questões na tela;
+        document.getElementById("qtdQuestoes").innerHTML = quantidadeDeQuestoes;
+
+        // Chamar Função de exibição das perguntas do Quiz;
+        exibirQuestoesHTML(0)
+
+        // Alterando Estado dos botões
+        iButtonSubmeter.disabled = false
+        iButtonAvancar.disabled = true
     }
 
-    function preencherHTMLcomQuestaoAtual(index) {
-        habilitarAlternativas(true)
-        const questaoAtual = listaDeQuestoes[index]
-        numeroDaQuestaoAtual = index
+    function iniciarQuizMilagres() {
+        // Esconder elementos da tela e exibir apenas o quiz;
+        document.getElementById("idivOptionSide").style.display = "none";
+        document.getElementById("iDivQuizKpi").style.display = "none";
+        document.getElementById("iDivQuizzes").style.display = "none";
+        document.getElementById("iDivQuizTentativa").style.display = "flex";
+
+        // For para Pegar 10 numeros aleatorios entre 0 e 29 para questões
+        for (let i = 0; i < 10; i++) {
+            let numeroAleatorio = Number((Math.random() * 30 - 1).toFixed(0));
+            perguntasAleatorias.push(perguntasQuizMilagres[numeroAleatorio]);
+        }
+
+        // Exibir Perguntas na console;
+        console.log(perguntasAleatorias);
+
+        // Exibir Quantidade de Questões na tela;
+        document.getElementById("qtdQuestoes").innerHTML = quantidadeDeQuestoes;
+
+        // Chamar Função de exibição das perguntas do Quiz;
+        exibirQuestoesHTML(0)
+
+        // Alterando Estado dos botões
+        iButtonSubmeter.disabled = false
+        iButtonAvancar.disabled = true
+    }
+
+    function iniciarQuizSacramentos() {
+        // Esconder elementos da tela e exibir apenas o quiz;
+        document.getElementById("idivOptionSide").style.display = "none";
+        document.getElementById("iDivQuizKpi").style.display = "none";
+        document.getElementById("iDivQuizzes").style.display = "none";
+        document.getElementById("iDivQuizTentativa").style.display = "flex";
+
+        // For para Pegar 10 numeros aleatorios entre 0 e 29 para questões
+        for (let i = 0; i < 10; i++) {
+            let numeroAleatorio = Number((Math.random() * 30 - 1).toFixed(0));
+            perguntasAleatorias.push(perguntasQuizSacramentos[numeroAleatorio]);
+        }
+
+        // Exibir Perguntas na console;
+        console.log(perguntasAleatorias);
+
+        // Exibir Quantidade de Questões na tela;
+        document.getElementById("qtdQuestoes").innerHTML = quantidadeDeQuestoes;
+
+        // Chamar Função de exibição das perguntas do Quiz;
+        exibirQuestoesHTML(0)
+
+        // Alterando Estado dos botões
+        iButtonSubmeter.disabled = false
+        iButtonAvancar.disabled = true
+    }
+
+    function exibirQuestoesHTML(index) {
+        // Habilita as Alternativas para escolha;
+        habilitarAlternativas(true);
+
+        // Declaração de Variavel de pergunta atual;
+        const questaoAtual = perguntasAleatorias[index];
+        numeroDaQuestaoAtual = index;
+
+        // Exibição de Pergunta na console;
         console.log("questaoAtual")
         console.log(questaoAtual)
+
+        // Preenchimento do HTML;
         document.getElementById("spanNumeroDaQuestaoAtual").innerHTML = Number(index) + 1 // ajustando porque o index começa em 0
         document.getElementById("spanQuestaoExibida").innerHTML = questaoAtual.pergunta;
         document.getElementById("labelOpcaoUm").innerHTML = questaoAtual.alternativaA;
@@ -133,97 +257,113 @@
     }
 
     function submeter() {
-        const options = document.getElementsByName("option"); // recupera alternativas no html
+        // Atibui alternativa à variável;
+        const options = document.getElementsByName("option");
 
-        let hasChecked = false
+        // Variável de validação;
+        let hasChecked = false;
+
+        // For para buscar alternativa selecionada;
         for (let i = 0; i < options.length; i++) {
             if (options[i].checked) {
-                hasChecked = true
-                break
+                hasChecked = true;
+                break;
             }
         }
 
+        // If para validação de alternativa Marcada;
         if (!hasChecked) {
-            alert("Não há alternativas escolhidas. Escolha uma opção.")
+            alert(`Escolha uma alternativa!`);
         } else {
-            btnSubmeter.disabled = true
-            btnProx.disabled = false
+            // Alterando Estado dos botões
+            iButtonSubmeter.disabled = true;
+            iButtonAvancar.disabled = false;
 
-            habilitarAlternativas(false)
+            // Desabilita alternativas para escolha;
+            habilitarAlternativas(false);
 
-            checarResposta()
+            // Faz a validação da resposta(certa/errada);
+            ValidarResposta();
         }
     }
 
     function habilitarAlternativas(trueOrFalse) {
-        let opcaoEscolhida = trueOrFalse ? false : true
+        // Variavel recebe um valor de verdadeiro ou falso;
+        let opcaoEscolhida = trueOrFalse ? false : true;
 
-        primeiraOpcao.disabled = opcaoEscolhida
-        segundaOpcao.disabled = opcaoEscolhida
-        terceiraOpcao.disabled = opcaoEscolhida
-        quartaOpcao.disabled = opcaoEscolhida
-
+        primeiraOpcao.disabled = opcaoEscolhida;
+        segundaOpcao.disabled = opcaoEscolhida;
+        terceiraOpcao.disabled = opcaoEscolhida;
+        quartaOpcao.disabled = opcaoEscolhida;
     }
 
     function avancar() {
-        btnProx.disabled = true
-        btnSubmeter.disabled = false
+        // Alterando Estado dos botões
+        iButtonAvancar.disabled = true;
+        iButtonSubmeter.disabled = false;
 
-        desmarcarRadioButtons()
+        // Desmarcar opção selecionada;
+        desmarcar();
 
-        if (numeroDaQuestaoAtual < quantidadeDeQuestoes - 1) {
-            preencherHTMLcomQuestaoAtual(numeroDaQuestaoAtual)
-        } else if (numeroDaQuestaoAtual == quantidadeDeQuestoes - 1) {
-            alert("Atenção... a próxima é a ultima questão!")
-            preencherHTMLcomQuestaoAtual(numeroDaQuestaoAtual)
+        // If para levar a proxima questão ou finalizar Quiz
+        if (numeroDaQuestaoAtual < quantidadeDeQuestoes) {
+            exibirQuestoesHTML(numeroDaQuestaoAtual);
         } else {
-            finalizarJogo()
+            finalizarJogo();
         }
-        limparCoresBackgroundOpcoes()
+
+        // Limpar As Cores que são exibidas ao acertar/errar questão;
+        limparCores();
     }
 
     function tentarNovamente() {
-        // atualiza a página
-        window.location.reload()
+        // Atualiza a Pagina, para uma nova tentativa;
+        window.location.reload();
     }
 
-    function checarResposta() {
-        const questaoAtual = listaDeQuestoes[numeroDaQuestaoAtual] // questão atual 
-        const respostaQuestaoAtual = questaoAtual.alternativaCorreta // qual é a resposta correta da questão atual
+    function ValidarResposta() {
+        // Questão atual;
+        const questaoAtual = perguntasAleatorias[numeroDaQuestaoAtual];
 
-        const options = document.getElementsByName("option"); // recupera alternativas no html
+        // Resposta certa;
+        const respostaQuestaoAtual = questaoAtual.alternativaCorreta;
 
-        let alternativaCorreta = null // variável para armazenar a alternativa correta
+        // Valida resposta do HTML;
+        const options = document.getElementsByName("option");
 
+        // variável para armazenar a alternativa correta;
+        let alternativaCorreta = null;
+
+        // ForEach para validar a reposta que esta correta;
         options.forEach((option) => {
             if (option.value === respostaQuestaoAtual) {
-                console.log("alternativaCorreta está no componente: " + alternativaCorreta)
-                alternativaCorreta = option.labels[0].id
+                console.log(`AlternativaCorreta está no componente: ${alternativaCorreta}`);
+                alternativaCorreta = option.labels[0].id;
             }
         })
 
-        // verifica se resposta assinalada é correta
+        // verifica se resposta é correta;
         options.forEach((option) => {
             if (option.checked === true && option.value === respostaQuestaoAtual) {
-                document.getElementById(alternativaCorreta).classList.add("text-success-with-bg")
-                pontuacaoFinal++
-                certas++
-                document.getElementById("spanCertas").innerHTML = certas
-                numeroDaQuestaoAtual++
+                document.getElementById(alternativaCorreta).classList.add("text-success-with-bg");
+                pontuacaoFinal++;
+                certas++;
+                document.getElementById("spanCertas").innerHTML = certas;
+                numeroDaQuestaoAtual++;
             } else if (option.checked && option.value !== respostaQuestaoAtual) {
-                const wrongLabelId = option.labels[0].id
+                const wrongLabelId = option.labels[0].id;
 
-                document.getElementById(wrongLabelId).classList.add("text-danger-with-bg")
-                document.getElementById(alternativaCorreta).classList.add("text-success-with-bg")
-                tentativaIncorreta++
-                erradas++
-                document.getElementById("spanErradas").innerHTML = erradas
-                numeroDaQuestaoAtual++
+                document.getElementById(wrongLabelId).classList.add("text-danger-with-bg");
+                document.getElementById(alternativaCorreta).classList.add("text-success-with-bg");
+                tentativaIncorreta++;
+                erradas++;
+                document.getElementById("spanErradas").innerHTML = erradas;
+                numeroDaQuestaoAtual++;
             }
         })
     }
 
-    function limparCoresBackgroundOpcoes() {
+    function limparCores() {
         const options = document.getElementsByName("option");
         options.forEach((option) => {
             document.getElementById(option.labels[0].id).classList.remove("text-danger-with-bg")
@@ -231,49 +371,50 @@
         })
     }
 
-    function desmarcarRadioButtons() {
+    function desmarcar() {
+        // Recebe alternativas da questão;
         const options = document.getElementsByName("option");
+
+        // For para desmarcar o que estiver selecionado;
         for (let i = 0; i < options.length; i++) {
             options[i].checked = false;
         }
     }
 
     function finalizarJogo() {
-        let textoParaMensagemFinal = null
-        let classComCoresParaMensagemFinal = null
-        const porcentagemFinalDeAcertos = pontuacaoFinal / quantidadeDeQuestoes
+        let textoParaMensagemFinal = null;
+        let classComCoresParaMensagemFinal = null;
+        const porcentagemFinalDeAcertos = pontuacaoFinal / quantidadeDeQuestoes;
 
         if (porcentagemFinalDeAcertos <= 0.3) {
-            textoParaMensagemFinal = "Parece que você não estudou..."
-            classComCoresParaMensagemFinal = "text-danger-with-bg"
+            textoParaMensagemFinal = "Parece que você não estudou...";
+            classComCoresParaMensagemFinal = "text-danger-with-bg";
         }
         else if (porcentagemFinalDeAcertos > 0.3 && porcentagemFinalDeAcertos < 0.9) {
-            textoParaMensagemFinal = "Pode melhorar na próxima, hein!"
-            classComCoresParaMensagemFinal = "text-warning-with-bg"
+            textoParaMensagemFinal = "Pode melhorar na próxima, hein!";
+            classComCoresParaMensagemFinal = "text-warning-with-bg";
         }
         else if (porcentagemFinalDeAcertos >= 0.9) {
-            textoParaMensagemFinal = "Uau, parabéns!"
-            classComCoresParaMensagemFinal = "text-success-with-bg"
+            textoParaMensagemFinal = "Uau, parabéns!";
+            classComCoresParaMensagemFinal = "text-success-with-bg";
         }
 
-        textoParaMensagemFinal += "<br> Você acertou " + Math.round((porcentagemFinalDeAcertos) * 100) + "% das questões."
+        textoParaMensagemFinal += "<br> Você acertou " + Math.round((porcentagemFinalDeAcertos) * 100) + "% das questões.";
 
 
-        document.getElementById('msgFinal').innerHTML = textoParaMensagemFinal
-        document.getElementById('msgFinal').classList.add(classComCoresParaMensagemFinal)
-        document.getElementById('spanPontuacaoFinal').innerHTML = pontuacaoFinal
+        document.getElementById('msgFinal').innerHTML = textoParaMensagemFinal;
+        document.getElementById('msgFinal').classList.add(classComCoresParaMensagemFinal);
+        document.getElementById('spanPontuacaoFinal').innerHTML = pontuacaoFinal;
 
-        document.getElementById('jogo').classList.add("text-new-gray")
+        document.getElementById('jogo').classList.add("text-new-gray");
 
-        btnProx.disabled = true
-        btnSubmeter.disabled = true
-        // btnConcluir.disabled = true
-        btnTentarNovamente.disabled = false
-
+        btnProx.disabled = true;
+        btnSubmeter.disabled = true;
+        btnTentarNovamente.disabled = false;
     }
 
-
-    const quizBiblico = [
+    // Array de questões do Quiz Bíblico;
+    const perguntasQuizBiblico = [
         {
             "pergunta": "Qual foi o primeiro filho de Adão e Eva?",
             "alternativaA": "Caim",
@@ -379,7 +520,7 @@
             "alternativaCorreta": "alternativaC"
         },
         {
-            "pergunta": "Qual dom os discípulos receberam no Pentecostes?",
+            "pergunta": "Qual dom os discipulos receberam no Pentecostes?",
             "alternativaA": "Curas",
             "alternativaB": "Profecias",
             "alternativaC": "Línguas",
@@ -516,8 +657,7 @@
         }
     ]
 
-
-    const quizSacramentos = [
+    const perguntasQuizSacramentos = [
         {
             "pergunta": "O que são os sacramentos na Igreja Católica?",
             "alternativaA": "Leis civis",
@@ -760,7 +900,7 @@
         }
     ]
 
-    const quizMilagres = [
+    const perguntasQuizMilagres = [
         {
             "pergunta": "O que a Igreja Católica exige antes de reconhecer oficialmente um milagre?",
             "alternativaA": "Um documento histórico",
@@ -1003,65 +1143,3 @@
         }
     ]
 </script>
-
-<!-- 
-    <div class="pontuacaoEJogo">
-        <button id="btnIniciarQuiz" onclick="iniciarQuiz()">INICIAR QUIZ</button>
-
-        <div id="pontuacao" class="flex-colunar width-fit-content border-primary">
-            <div id="pontuacaoDuranteJogo" class="flex-colunar padding-8">
-                <span class="width-fit-content">Quantidade de acertos: <span id="spanCertas"></span></span>
-                <span class="width-fit-content">Quantidade de erros: <span id="spanErradas"></span></span>
-            </div>
-            <div id="pontuacaoFinalJogo" class="flex-colunar padding-8">
-                <span id="pontuacaoFinal" class="width-fit-content">Pontuação Final:
-                    <span id="spanPontuacaoFinal">***</span>
-                </span>
-                <span id="msgFinal" class="width-fit-content">***</span>
-            </div>
-        </div>
-
-        <div id="jogo" class="width-fit-content flex-colunar border-secondary">
-
-            <div id="infoQuestao" class="padding-8">
-                <span>Questão atual: <span id="spanNumeroDaQuestaoAtual"></span> de <span id="qtdQuestoes"></span>
-                    questões.</span>
-            </div>
-
-            <div id="perguntaDaQuestaoAtual" class="padding-8">
-                <span id="spanQuestaoExibida" class="text-bold"></span>
-            </div>
-
-            <div id="infoAlternativas" class="padding-8">
-                <span><em>Escolha uma opção dentre as abaixo:</em></span>
-            </div>
-
-            <div id="opcoes" class="flex-colunar padding-8">
-                <span>
-                    <input type="radio" id="primeiraOpcao" name="option" class="radio" value="alternativaA" />
-                    <label for="primeiraOpcao" class="option" id="labelOpcaoUm"></label>
-                </span>
-                <span>
-                    <input type="radio" id="segundaOpcao" name="option" class="radio" value="alternativaB" />
-                    <label for="segundaOpcao" class="option" id="labelOpcaoDois"></label>
-                </span>
-                <span>
-                    <input type="radio" id="terceiraOpcao" name="option" class="radio" value="alternativaC" />
-                    <label for="terceiraOpcao" class="option" id="labelOpcaoTres"></label>
-                </span>
-                <span>
-                    <input type="radio" id="quartaOpcao" name="option" class="radio" value="alternativaD" />
-                    <label for="quartaOpcao" class="option" id="labelOpcaoQuatro"></label>
-                </span>
-            </div>
-
-            <div id="botoes" class="flex-colunar padding-8">
-                <button onclick="submeter()" id="btnSubmeter">Submeter resposta</button>
-                <button onclick="avancar()" id="btnProx" disabled>Avançar para próxima questão</button>
-                <button onclick="finalizar()" id="btnConcluir" disabled>Finalizar Quiz</button> // Comentar Linha depois
-                <button onclick="tentarNovamente()" id="btnTentarNovamente" disabled>Tentar novamente</button>
-            </div>
-
-        </div>
-    </div>
--->
