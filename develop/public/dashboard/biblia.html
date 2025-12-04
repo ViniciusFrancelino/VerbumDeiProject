@@ -19,7 +19,7 @@
         rel="stylesheet">
 </head>
 
-<body onload="validarSessao()">
+<body onload="validarSessao(), verLivro()" >
 
     <div class="divOptionSide">
         <div class="divOptionLogo">
@@ -60,13 +60,63 @@
     </div>
 
     <div class="divLivrosOption">
-        
-        <h1>Novo Testamento</h1>
 
-        <div class="divLivrosButton">
-            <a href=""></a>
+        <div class="divTitle">
+            <span>Novo Testamento</span>
+        </div>
+
+        <div class="divLivros">
+            <span>Selecione um Livro:</span>
+            <select name="selBibliaOptions" id="selBibliaOptions" class="selBibliaOptions" onchange="verLivro()">
+                <option value="select">#Select</option>
+                <option value="mateus">Mateus</option>
+                <option value="marcos">Marcos</option>
+                <option value="lucas">Lucas</option>
+                <option value="joao">João</option>
+                <option value="atos">Atos</option>
+                <option value="romanos">Romanos</option>
+                <option value="i_corintios">I Coríntios</option>
+                <option value="ii_corintios">II Coríntios</option>
+                <option value="galatas">Gálatas</option>
+                <option value="efesios">Efésios</option>
+                <option value="filipenses">Filipenses</option>
+                <option value="colossenses">Colossenses</option>
+                <option value="i_tessalonicense">I Tessalonicenses</option>
+                <option value="ii_tessalonicense">II Tessalonicenses</option>
+                <option value="i_timoteo">I Timóteo</option>
+                <option value="ii_timoteo">II Timóteo</option>
+                <option value="tito">Tito</option>
+                <option value="filemon">Filemom</option>
+                <option value="hebreus">Hebreus</option>
+                <option value="tiago">Tiago</option>
+                <option value="i_pedro">I Pedro</option>
+                <option value="ii_pedro">II Pedro</option>
+                <option value="i_joao">I João</option>
+                <option value="ii_joao">II João</option>
+                <option value="iii_joao">III João</option>
+                <option value="judas">Judas</option>
+                <option value="apocalipse">Apocalipse</option>
+            </select>
         </div>
     </div>
-</body>
 
+    <div id="divLeitura" class="divLeitura"></div>
+</body>
 </html>
+
+<script>
+
+    let idUsuario = sessionStorage.ID_USUARIO;
+
+    function verLivro() {
+        let livro = document.getElementById("selBibliaOptions").value;
+
+        if (livro == 'select') {
+            divLeitura.innerHTML = `Nenhum Livro Selecionado!`;
+        } else {
+
+            
+        }
+    }
+
+</script>

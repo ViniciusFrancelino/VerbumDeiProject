@@ -16,33 +16,14 @@ CREATE TABLE aviso (
 	FOREIGN KEY (fk_usuario) REFERENCES usuario(id)
 );
 
-
-/* Tabela De Perguntas Quiz */
-CREATE TABLE quizPergunta (
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	pergunta VARCHAR(100) NOT NULL UNIQUE,
-	categoria VARCHAR(10) NOT NULL,
-	CONSTRAINT chkCategoria CHECK (categoria IN('Biblica', 'Milagres', 'Sacramento')),
-	status BOOLEAN NOT NULL
-);
-
-/* Tabela De Respostas Quiz */
-CREATE TABLE quizResposta (
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	fkPergunta INT,
-	resposta VARCHAR(100) NOT NULL UNIQUE,
-	validacao BOOLEAN,
-	FOREIGN KEY (fkPergunta) REFERENCES quizPergunta(id)
-);
-
-/* Tabela de Acertos do Quiz */
+/* Tabela de Resultado do Quiz */
 CREATE TABLE quizResultado(
 	id INT PRIMARY KEY AUTO_INCREMENT,
 	idUsuario int,
 	FOREIGN KEY (idUsuario) REFERENCES usuario(id),
 	pontuacao int NOT NULL, 
 	tipoQuiz VARCHAR(10),
-	CONSTRAINT chkCategoria CHECK (categoria IN('Biblico', 'Milagres', 'Sacramento'))
+	CONSTRAINT chkTipoQuiz CHECK (tipoQuiz IN('Biblico', 'Milagres', 'Sacramento'))
 );
 
 /* Criação de tabelas para biblia */

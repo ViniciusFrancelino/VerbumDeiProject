@@ -145,15 +145,19 @@
 <script>
 
     // Variáveis Globais;
+    let idUsuario = sessionStorage.ID_USUARIO
+    let tipoQuiz = '';
     let perguntasAleatorias = [];
     let validarNumeroRepetido = [];
     let pontuacaoFinal = 0;
     let tentativaIncorreta = 0;
     let certas = 0;
     let erradas = 0;
-    let quantidadeDeQuestoes = 10;
+    let quantidadeDeQuestoes = 5;
 
     function iniciarQuizBiblico() {
+        tipoQuiz = "Biblico";
+        
         // Esconder elementos da tela e exibir apenas o quiz;
         document.getElementById("idivOptionSide").style.display = "none";
         document.getElementById("iDivQuizKpi").style.display = "none";
@@ -162,7 +166,7 @@
         document.getElementById("iDivPontuacao").style.display = "flex";
 
         // For para Pegar 10 numeros aleatorios entre 0 e 29 para questões
-        for (let i = 0; i < 10; i++) {
+        for (let i = 0; i < 5; i++) {
             let numeroAleatorio = Number((Math.random() * 29).toFixed(0));
             perguntasAleatorias.push(perguntasQuizBiblico[numeroAleatorio]);
         }
@@ -178,6 +182,8 @@
     }
 
     function iniciarQuizMilagres() {
+        tipoQuiz = "Milagres";
+
         // Esconder elementos da tela e exibir apenas o quiz;
         document.getElementById("idivOptionSide").style.display = "none";
         document.getElementById("iDivQuizKpi").style.display = "none";
@@ -201,6 +207,8 @@
     }
 
     function iniciarQuizSacramentos() {
+        tipoQuiz = "Sacramentos";
+
         // Esconder elementos da tela e exibir apenas o quiz;
         document.getElementById("idivOptionSide").style.display = "none";
         document.getElementById("iDivQuizKpi").style.display = "none";
@@ -373,7 +381,7 @@
         }
         else if (porcentagemFinalDeAcertos > 0.3 && porcentagemFinalDeAcertos < 0.9) {
             textoParaMensagemFinal = "Pode melhorar na próxima, hein!";
-            classComCoresParaMensagemFinal = "text-warning-with-bg";
+            // classComCoresParaMensagemFinal = "text-warning-with-bg";
         }
         else if (porcentagemFinalDeAcertos >= 0.9) {
             textoParaMensagemFinal = "Uau, parabéns!";
@@ -387,32 +395,29 @@
         document.getElementById('msgFinal').classList.add(classComCoresParaMensagemFinal);
         document.getElementById('spanPontuacaoFinal').innerHTML = pontuacaoFinal;
 
-        document.getElementById('jogo').classList.add("text-new-gray");
+        // document.getElementById('jogo').classList.add("text-new-gray");
 
-        btnProx.disabled = true;
-        btnSubmeter.disabled = true;
-        btnTentarNovamente.disabled = false;
+        registrarResultado()
     }
 
     b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
-    function cadastrarResultado(){
+    function registrarResultado(){
         fetch("/quiz/registrar", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                pontuacaoQuiz: pontuacaoFinal,
-                tentativaQuiz: tentativa,
-                // tipoQuiz: tipo,
-                idusuarioQuiz: idUsuario
+                idusuarioServer: idUsuario,
+                pontuacaoServer: pontuacaoFinal,
+                tipoQuizServer: tipoQuiz
             }),
         })
 
-        setTimeout(function () {
-            window.location = "dashboard.html";
-        }, 3000);
+        // setTimeout(function () {
+        //     window.location = "dashboard.html";
+        // }, 5000);
     }
 
     
