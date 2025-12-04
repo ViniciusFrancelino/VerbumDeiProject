@@ -120,8 +120,8 @@ body {
 .divKpiGerais {
   display: flex;
   align-items: center;
-  justify-content: space-around;
-  gap: 30%;
+  justify-content: center;
+  gap: 25%;
 
   width: 75%;
   height: 100px;
@@ -129,6 +129,11 @@ body {
   margin: 3.8% 20%;
   background-color: #f4d6b3;
   border-radius: 20px;
+}
+
+.divKpiGerais span {
+  font-size: large;
+  font-weight: bold;
 }
 
 /* Graficos */
@@ -145,6 +150,8 @@ body {
   background-color: #f4d6b3;
   border-radius: 20px;
 }
+
+
 
 /* Fim Dashboard -- Fim Dashboard -- Fim Dashboard -- Fim Dashboard -- Fim Dashboard -- Fim Dashboard -- */
 

@@ -62,9 +62,9 @@
     </div>
 
     <div class="divKpiGerais">
-        <span>Publicações: <span id="idPublicacoes"></span></span>
+        <span>Quiz mais Jogado: <span id="idQuizFavoritos"></span></span>
         <span>Tentativas Quiz: <span id="idTentativas"></span></span>
-        <span>Acertos: <span id="idAcertos"></span></span>
+        <span>Porcentual de acertos: <span id="idPorcentual"></span></span>
     </div>
 
     <div class="divGraficosGerais">
@@ -96,7 +96,7 @@
                 if (response.ok) {
                     response.json().then(function (resposta) {
                         console.log("KPI recebida:", resposta);
-                        plotarKpi(resposta); 
+                        plotarKpis(resposta); 
                     });
                 } else {
                     console.error('Nenhum dado encontrado');
@@ -245,10 +245,18 @@
 
     function plotarKpis(resposta) {
 
-        idPublicacoes.innerHTML = `${resposta[0].publicaoesMural}`;
-        idTentativas.innerHTML = `${resposta[0].TentativasRealizadas}%`;
-        idAcertos.innerHTML = `${resposta[0].AcertosGerais}`;
-
+        if (resposta[0].quizFavoritos == 0 || resposta[0].quizFavoritos == null || resposta[0].quizFavoritos == ''){
+            idQuizFavoritos.innerHTML = '';
+        }else if (resposta[0].TentativasRealizadas == 0|| resposta[0].TentativasRealizadas == null || resposta[0].TentativasRealizadas == ''){
+            idTentativas.innerHTML = '';
+        }else if (resposta[0].porcentual == 0 || resposta[0].porcentual == null || resposta[0].porcentual == ''){
+            idPorcentual.innerHTML = '';
+        }else {
+            idQuizFavoritos.innerHTML = `${resposta[0].quizFavoritos}`;
+            idTentativas.innerHTML = `${resposta[0].TentativasRealizadas}`;
+            idPorcentual.innerHTML = `${resposta[0].porcentual}%`;
+        }
+        
         console.log("KPIs recebidas da API:", resposta);
     }
 
