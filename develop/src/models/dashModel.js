@@ -23,11 +23,11 @@ function plotarKpis(idUsuario) {
 
 function  exibirGrafico(idUsuario) {
 
-    var instrucaoSql = `SELECT idUsuario, tipoQuiz, pontuacao, id
+    var instrucaoSql = `SELECT tipoQuiz, pontuacao
     FROM quizResultado
     WHERE idUsuario = 1
-    ORDER BY id DESC
-;`;
+    ORDER BY id DESC;
+    `;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);

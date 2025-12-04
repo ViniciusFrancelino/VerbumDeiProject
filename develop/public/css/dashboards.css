@@ -150,6 +150,9 @@ body {
   background-color: #f4d6b3;
   border-radius: 20px;
 }
+#myChart{
+  width: 100%;
+}
 
 
 

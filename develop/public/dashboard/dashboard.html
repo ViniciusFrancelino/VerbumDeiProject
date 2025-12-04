@@ -69,20 +69,17 @@
 
     <div class="divGraficosGerais">
         <div class="divGrafico">
-            <canvas id="myChart"></canvas>
+            <canvas id="myChart" style="width: 400%;"></canvas>
         </div>
-
-
     </div>
 
 </body>
-
 </html>
 
 <script>
 
     b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
-    const firtsGraf = document.getElementById('myChart1');
+    const firtsGraf = document.getElementById('myChart');
     let proximaAtualizacao;
 
     window.onload = obterDados();
@@ -132,23 +129,23 @@
         console.log('iniciando plotagem do gráfico...');
 
         // Criando estrutura para plotar gráfico - labels
-        let labels = [];
+        let labels = ["pontuacao", "tipoQuiz"];
 
         // Criando estrutura para plotar gráfico - dados
         let dados = {
             labels: labels,
             datasets: [{
-                label: 'Umidade',
+                label: 'pontuacao',
                 data: [],
                 fill: false,
-                borderColor: 'rgb(75, 192, 192)',
+                backgroundColor: '#43260c',
                 tension: 0.1
             },
             {
-                label: 'Temperatura',
+                label: 'tipoQuiz',
                 data: [],
                 fill: false,
-                borderColor: 'rgb(199, 52, 52)',
+                backgroundColor: '#43260c',
                 tension: 0.1
             }]
         };
@@ -160,9 +157,11 @@
         // Inserindo valores recebidos em estrutura para plotar o gráfico
         for (i = 0; i < resposta.length; i++) {
             var registro = resposta[i];
-            labels.push(registro.momento_grafico);
-            dados.datasets[0].data.push(registro.umidade);
-            dados.datasets[1].data.push(registro.temperatura);
+            // labels.push(registro.momento_grafico);
+            dados.datasets[0].data.push(registro.pontuacao);
+            dados.datasets[1].data.push(registro.tipoQuiz);
+
+            console.log(resposta[i]);
         }
 
         console.log('----------------------------------------------')
@@ -175,73 +174,19 @@
 
         // Criando estrutura para plotar gráfico - config
         const config = {
-            type: 'line',
+            type: 'bar',
             data: dados,
+            Option: {
+                maintainAspectRatio: false,
+                resposive: true
+            }
         };
 
         // Adicionando gráfico criado em div na tela
         let myChart = new Chart(
-            document.getElementById(`myChartCanvas${idUsuario}`),
+            document.getElementById(`myChart`),
             config
         );
-
-        setTimeout(() => atualizarGrafico(idUsuario, dados, myChart), 2000);
-    }
-
-    function plotarGrafico(resposta) {
-
-        let labels = [];
-        let respCerta = [];
-
-        for (let i = 0; i < resposta.length; i++) {
-
-            let registro = resposta[i];
-            labels.push(registro.data_resposta);
-            respCerta.push(registro.Respostas_certa);
-        }
-
-
-        // Confs Graficos
-        const config = {
-            type: 'bar',
-            data: {
-                labels: labels,
-                datasets: [
-                    {
-                        label: 'Certas',
-                        data: resCertas,
-                        backgroundColor: [
-                            'rgb(72, 202, 89)'
-                        ]
-                    },
-                    {
-                        label: 'Erradas',
-                        data: resErradas,
-                        backgroundColor: [
-                            'rgb(227, 76, 76)'
-                        ]
-                    }
-                ]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        suggestedMax: 5
-                    }
-                }
-            }
-        };
-
-        while (labels.length > 5) {
-            labels.shift();
-            respCertas.shift()
-        }
-
-        // Gerando novo gráfico
-        window.graficoAtual = new Chart(canvasGraf, config);
     }
 
     function plotarKpis(resposta) {

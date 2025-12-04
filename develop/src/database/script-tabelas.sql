@@ -25,19 +25,3 @@ CREATE TABLE quizResultado(
 	tipoQuiz VARCHAR(10),
 	CONSTRAINT chkTipoQuiz CHECK (tipoQuiz IN('Biblico', 'Milagres', 'Sacramento'))
 );
-
-/* Criação de tabelas para biblia */
-CREATE TABLE indiceBiblia (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    livro VARCHAR(17),
-    ordem INT
-);
-
-CREATE TABLE novoTestamento (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    idLivro INT,
-    capitulo INT NOT NULL,
-    versiculo INT NOT NULL,
-    descricao TEXT NOT NULL,
-    FOREIGN KEY (idLivro) REFERENCES indiceBiblia(id)
-);
