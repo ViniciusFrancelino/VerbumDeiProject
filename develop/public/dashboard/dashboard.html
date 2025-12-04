@@ -68,10 +68,11 @@
     </div>
 
     <div class="divGraficosGerais">
-        <div class="divGrafico1">
-            <canvas id="myChart1"></canvas>
-            <canvas id="myChart2"></canvas>
+        <div class="divGrafico">
+            <canvas id="myChart"></canvas>
         </div>
+
+
     </div>
 
 </body>
@@ -108,22 +109,22 @@
             });
 
 
-        // fetch(`/dashboard/graficos/${idUsuario}`, { cache: 'no-store' })
-        //     .then(function (response) {
-        //         if (response.ok) {
-        //             response.json().then(function (resposta) {
-        //                 conosle.log(`Dados Recebidos:`, resposta);
-        //                 resposta.reverse();
-
-        //                 plotarGrafico(resposta, idUsuario);
-        //             });
-        //         } else {
-        //             console.log("Nenhum Dado Encontrado!");
-        //         }
-        //     })
-        //     .catch(function (error) {
-        //         console.error(`Erro na Obtenção de dados do Grafico: ${error.message}`);
-        //     })
+        fetch(`/dash/graficos/${idUsuario}`, { cache: 'no-store' })
+            .then(function (response) {
+                if (response.ok) {
+                    response.json().then(function (resposta) {
+                        console.log(`Dados Recebidos:`, resposta);
+                        resposta.reverse();
+                        
+                        plotarGrafico(resposta, idUsuario);
+                    });
+                } else {
+                    console.log("Nenhum Dado Encontrado!");
+                }
+            })
+            .catch(function (error) {
+                console.error(`Erro na Obtenção de dados do Grafico: ${error.message}`);
+            });
     }
 
     function plotarGrafico(resposta, idUsuario) {

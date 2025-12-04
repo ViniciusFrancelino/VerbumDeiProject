@@ -21,7 +21,19 @@ function plotarKpis(idUsuario) {
     return database.executar(instrucaoSql);
 }
 
+function  exibirGrafico(idUsuario) {
+
+    var instrucaoSql = `SELECT idUsuario, tipoQuiz, pontuacao, id
+    FROM quizResultado
+    WHERE idUsuario = 1
+    ORDER BY id DESC
+;`;
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
 
 module.exports = {
-    plotarKpis
+    plotarKpis,
+    exibirGrafico
 };
