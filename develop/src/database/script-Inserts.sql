@@ -1,3 +1,33 @@
+INSERT INTO indiceBiblia (livro, ordem) VALUES
+('mateus', 1),
+('marcos', 2),
+('lucas', 3),
+('joao', 4),
+('atos', 5),
+('romanos', 6),
+('i_corintios', 7),
+('ii_corintios', 8),
+('galatas', 9),
+('efesios', 10),
+('filipenses', 11),
+('colossenses', 12),
+('i_tessalonicense', 13),
+('ii_tessalonicense', 14),
+('i_timoteo', 15),
+('ii_timoteo', 16),
+('tito', 17),
+('filemon', 18),
+('hebreus', 19),
+('tiago', 20),
+('i_pedro', 21),
+('ii_pedro', 22),
+('i_joao', 23),
+('ii_joao', 24),
+('iii_joao', 25),
+('judas', 26),
+('apocalipse', 27);
+
+
 INSERT INTO novoTestamento (idLivro, capitulo, versiculo, descricao) VALUES ('1', '1', '1', '¶ LIVRO da geração de Jesus Cristo, filho de David, filho de Abraão.');
 INSERT INTO novoTestamento (idLivro, capitulo, versiculo, descricao) VALUES ('1', '1', '2', 'Abraão gerou a Isaque; e Isaque gerou a Jacob; e Jacob gerou a Judas e a seus irmãos;');
 INSERT INTO novoTestamento (idLivro, capitulo, versiculo, descricao) VALUES ('1', '1', '3', 'E Judas gerou de Tamar a Fares e a Zara; e Fares gerou a Esrom; e Esrom gerou a Aarão;');

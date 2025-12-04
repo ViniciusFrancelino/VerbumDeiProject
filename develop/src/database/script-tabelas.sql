@@ -23,8 +23,6 @@ CREATE TABLE quizPergunta (
 	pergunta VARCHAR(100) NOT NULL UNIQUE,
 	categoria VARCHAR(10) NOT NULL,
 	CONSTRAINT chkCategoria CHECK (categoria IN('Biblica', 'Milagres', 'Sacramento')),
-	dificuldade VARCHAR(7) NOT NULL,
-	CONSTRAINT chkDificuldade CHECK (categoria IN('Facil', 'Medio', 'Dificil')),
 	status BOOLEAN NOT NULL
 );
 
@@ -38,16 +36,13 @@ CREATE TABLE quizResposta (
 );
 
 /* Tabela de Acertos do Quiz */
-CREATE TABLE quizResultado (
+CREATE TABLE quizResultado(
 	id INT PRIMARY KEY AUTO_INCREMENT,
-	fkUsuario INT,
-	fkPergunta INT,
-	fkResposta INT,
-	resultado BOOLEAN,
-	dataQuiz DATETIME,
-	FOREIGN KEY (fkUsuario) REFERENCES usuario(id),
-	FOREIGN KEY (fkPergunta) REFERENCES quizPergunta(id),
-	FOREIGN KEY (fkResposta) REFERENCES quizResposta(id)
+	idUsuario int,
+	FOREIGN KEY (idUsuario) REFERENCES usuario(id),
+	pontuacao int NOT NULL, 
+	tipoQuiz VARCHAR(10),
+	CONSTRAINT chkCategoria CHECK (categoria IN('Biblico', 'Milagres', 'Sacramento'))
 );
 
 /* Criação de tabelas para biblia */
@@ -65,33 +60,3 @@ CREATE TABLE novoTestamento (
     descricao TEXT NOT NULL,
     FOREIGN KEY (idLivro) REFERENCES indiceBiblia(id)
 );
-
-
-INSERT INTO indiceBiblia (livro, ordem) VALUES
-('mateus', 1),
-('marcos', 2),
-('lucas', 3),
-('joao', 4),
-('atos', 5),
-('romanos', 6),
-('i_corintios', 7),
-('ii_corintios', 8),
-('galatas', 9),
-('efesios', 10),
-('filipenses', 11),
-('colossenses', 12),
-('i_tessalonicense', 13),
-('ii_tessalonicense', 14),
-('i_timoteo', 15),
-('ii_timoteo', 16),
-('tito', 17),
-('filemon', 18),
-('hebreus', 19),
-('tiago', 20),
-('i_pedro', 21),
-('ii_pedro', 22),
-('i_joao', 23),
-('ii_joao', 24),
-('iii_joao', 25),
-('judas', 26),
-('apocalipse', 27);
