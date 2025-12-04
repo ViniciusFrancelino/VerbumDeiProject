@@ -145,7 +145,7 @@
 <script>
 
     // Variáveis Globais;
-    let idUsuario = sessionStorage.ID_USUARIO
+    let idUsuario = Number(sessionStorage.ID_USUARIO);
     let tipoQuiz = '';
     let perguntasAleatorias = [];
     let validarNumeroRepetido = [];
@@ -153,7 +153,7 @@
     let tentativaIncorreta = 0;
     let certas = 0;
     let erradas = 0;
-    let quantidadeDeQuestoes = 2;
+    let quantidadeDeQuestoes = 10;
 
     function iniciarQuizBiblico() {
         tipoQuiz = "Biblico";
@@ -166,7 +166,7 @@
         document.getElementById("iDivPontuacao").style.display = "flex";
 
         // For para Pegar 10 numeros aleatorios entre 0 e 29 para questões
-        for (let i = 0; i < 2; i++) {
+        for (let i = 0; i < 10; i++) {
             let numeroAleatorio = Number((Math.random() * 29).toFixed(0));
             perguntasAleatorias.push(perguntasQuizBiblico[numeroAleatorio]);
         }
@@ -415,9 +415,9 @@
             }),
         })
 
-        // setTimeout(function () {
-        //     window.location = "dashboard.html";
-        // }, 5000);
+        setTimeout(function () {
+            window.location = "dashboard.html";
+        }, 5000);
     }
 
     
