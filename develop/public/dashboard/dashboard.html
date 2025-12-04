@@ -62,9 +62,9 @@
     </div>
 
     <div class="divKpiGerais">
-        <span>Publicações: <span></span></span>
-        <span>Tentativas Quiz: <span></span></span>
-        <span>Acertos: <span></span></span>
+        <span>Publicações: <span id="idPublicacoes"></span></span>
+        <span>Tentativas Quiz: <span id="idTentativas"></span></span>
+        <span>Acertos: <span id="idAcertos"></span></span>
     </div>
 
     <div class="divGraficosGerais">
@@ -81,32 +81,49 @@
 <script>
 
     b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
-
     const firtsGraf = document.getElementById('myChart1');
-    let idUsuario = 0;
     let proximaAtualizacao;
 
     window.onload = obterDados();
 
     function obterDados() {
-        idUsuario = sessionStorage.ID_USUARIO;
 
-        fetch(`/dashboard/graficos/${idUsuario}`, { cache: 'no-store' })
+        var idUsuario = sessionStorage.ID_USUARIO;
+        
+        // Obter dados para KPIs da dashboard
+        fetch(`/dash/dash/${idUsuario}`, { cache: 'no-store' })
             .then(function (response) {
                 if (response.ok) {
                     response.json().then(function (resposta) {
-                        conosle.log(`Dados Recebidos:`, resposta);
-                        resposta.reverse();
-
-                        plotarGrafico(resposta, idUsuario);
+                        console.log("KPI recebida:", resposta);
+                        plotarKpi(resposta); 
                     });
                 } else {
-                    console.log("Nenhum Dado Encontrado!");
+                    console.error('Nenhum dado encontrado');
                 }
             })
-            .catch(function (error) {
-                console.error(`Erro na Obtenção de dados do Grafico: ${error.message}`);
-            })
+            .catch(function (erro) {
+                console.error(`Erro ao Obter KPIs: ${error.message}`);
+            
+            });
+
+
+        // fetch(`/dashboard/graficos/${idUsuario}`, { cache: 'no-store' })
+        //     .then(function (response) {
+        //         if (response.ok) {
+        //             response.json().then(function (resposta) {
+        //                 conosle.log(`Dados Recebidos:`, resposta);
+        //                 resposta.reverse();
+
+        //                 plotarGrafico(resposta, idUsuario);
+        //             });
+        //         } else {
+        //             console.log("Nenhum Dado Encontrado!");
+        //         }
+        //     })
+        //     .catch(function (error) {
+        //         console.error(`Erro na Obtenção de dados do Grafico: ${error.message}`);
+        //     })
     }
 
     function plotarGrafico(resposta, idUsuario) {
@@ -224,6 +241,15 @@
 
         // Gerando novo gráfico
         window.graficoAtual = new Chart(canvasGraf, config);
+    }
+
+    function plotarKpis(resposta) {
+
+        idPublicacoes.innerHTML = `${resposta[0].publicaoesMural}`;
+        idTentativas.innerHTML = `${resposta[0].TentativasRealizadas}%`;
+        idAcertos.innerHTML = `${resposta[0].AcertosGerais}`;
+
+        console.log("KPIs recebidas da API:", resposta);
     }
 
 </script>
