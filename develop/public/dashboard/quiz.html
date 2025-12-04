@@ -14,9 +14,7 @@
     <script src="./../js/alerta.js"></script>
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 </head>
 
 <body class="quizBody" onload="validarSessao()">
@@ -100,44 +98,44 @@
         </div>
 
         <div id="iDivPerguntaAtual" class="divPerguntaAtual">
-            <span id="spanQuestaoExibida" class="text-bold"></span>
+            <span id="spanQuestaoAtual" class="text-bold"></span>
         </div>
 
         <div id="iDivOptions" class="divOptions">
             <span>
-                <input type="radio" id="primeiraOpcao" name="option" class="radio" value="alternativaA" />
+                <input type="radio" id="primeiraOpcao" name="option" class="radio" value="alternativaA" onchange="submeter()"/>
                 <label for="primeiraOpcao" class="option" id="labelOpcaoUm"></label>
             </span>
             <span>
-                <input type="radio" id="segundaOpcao" name="option" class="radio" value="alternativaB" />
+                <input type="radio" id="segundaOpcao" name="option" class="radio" value="alternativaB" onchange="submeter()"/>
                 <label for="segundaOpcao" class="option" id="labelOpcaoDois"></label>
             </span>
             <span>
-                <input type="radio" id="terceiraOpcao" name="option" class="radio" value="alternativaC" />
+                <input type="radio" id="terceiraOpcao" name="option" class="radio" value="alternativaC" onchange="submeter()"/>
                 <label for="terceiraOpcao" class="option" id="labelOpcaoTres"></label>
             </span>
             <span>
-                <input type="radio" id="quartaOpcao" name="option" class="radio" value="alternativaD" />
+                <input type="radio" id="quartaOpcao" name="option" class="radio" value="alternativaD" onchange="submeter()"/>
                 <label for="quartaOpcao" class="option" id="labelOpcaoQuatro"></label>
             </span>
         </div>
 
         <div id="iDivButtons" class="divButtons">
-            <button id="iButtonSubmeter" onclick="submeter()">Submeter</button>
             <button id="iButtonAvancar" onclick="avancar()">Avançar</button>
+            <button id="iButtonSair" onclick="tentarNovamente()">Sair</button>
         </div>
     </div>
 
-    <div id="pontuacao" class="flex-colunar width-fit-content border-primary">
-        <div id="pontuacaoDuranteJogo" class="flex-colunar padding-8">
-            <span class="width-fit-content">Quantidade de acertos: <span id="spanCertas"></span></span>
+    <div id="iDivPontuacao" class="divPontuacao">
+        <div id="pontuacaoDuranteJogo" class="divPontuacaoSpan">
+            <span class="width-fit-content">Quantidade de acertos: <span id="spanCertas"></span></span><br>
             <span class="width-fit-content">Quantidade de erros: <span id="spanErradas"></span></span>
         </div>
-        <div id="pontuacaoFinalJogo" class="flex-colunar padding-8">
+        <div id="pontuacaoFinalJogo" class="divPontuacaoSpan">
             <span id="pontuacaoFinal" class="width-fit-content">Pontuação Final:
-                <span id="spanPontuacaoFinal">***</span>
+                <span id="spanPontuacaoFinal"></span><br>
             </span>
-            <span id="msgFinal" class="width-fit-content">***</span>
+            <span id="msgFinal" class="width-fit-content"></span>
         </div>
     </div>
 </body>
@@ -148,6 +146,7 @@
 
     // Variáveis Globais;
     let perguntasAleatorias = [];
+    let validarNumeroRepetido = [];
     let pontuacaoFinal = 0;
     let tentativaIncorreta = 0;
     let certas = 0;
@@ -160,15 +159,13 @@
         document.getElementById("iDivQuizKpi").style.display = "none";
         document.getElementById("iDivQuizzes").style.display = "none";
         document.getElementById("iDivQuizTentativa").style.display = "flex";
+        document.getElementById("iDivPontuacao").style.display = "flex";
 
         // For para Pegar 10 numeros aleatorios entre 0 e 29 para questões
         for (let i = 0; i < 10; i++) {
-            let numeroAleatorio = Number((Math.random() * 30 - 1).toFixed(0));
+            let numeroAleatorio = Number((Math.random() * 29).toFixed(0));
             perguntasAleatorias.push(perguntasQuizBiblico[numeroAleatorio]);
         }
-
-        // Exibir Perguntas na console;
-        console.log(perguntasAleatorias);
 
         // Exibir Quantidade de Questões na tela;
         document.getElementById("qtdQuestoes").innerHTML = quantidadeDeQuestoes;
@@ -177,7 +174,6 @@
         exibirQuestoesHTML(0)
 
         // Alterando Estado dos botões
-        iButtonSubmeter.disabled = false
         iButtonAvancar.disabled = true
     }
 
@@ -187,15 +183,12 @@
         document.getElementById("iDivQuizKpi").style.display = "none";
         document.getElementById("iDivQuizzes").style.display = "none";
         document.getElementById("iDivQuizTentativa").style.display = "flex";
-
+        
         // For para Pegar 10 numeros aleatorios entre 0 e 29 para questões
         for (let i = 0; i < 10; i++) {
-            let numeroAleatorio = Number((Math.random() * 30 - 1).toFixed(0));
+            let numeroAleatorio = Number((Math.random() * 29).toFixed(0));
             perguntasAleatorias.push(perguntasQuizMilagres[numeroAleatorio]);
         }
-
-        // Exibir Perguntas na console;
-        console.log(perguntasAleatorias);
 
         // Exibir Quantidade de Questões na tela;
         document.getElementById("qtdQuestoes").innerHTML = quantidadeDeQuestoes;
@@ -204,7 +197,6 @@
         exibirQuestoesHTML(0)
 
         // Alterando Estado dos botões
-        iButtonSubmeter.disabled = false
         iButtonAvancar.disabled = true
     }
 
@@ -217,12 +209,9 @@
 
         // For para Pegar 10 numeros aleatorios entre 0 e 29 para questões
         for (let i = 0; i < 10; i++) {
-            let numeroAleatorio = Number((Math.random() * 30 - 1).toFixed(0));
+            let numeroAleatorio = Number((Math.random() * 29).toFixed(0));
             perguntasAleatorias.push(perguntasQuizSacramentos[numeroAleatorio]);
         }
-
-        // Exibir Perguntas na console;
-        console.log(perguntasAleatorias);
 
         // Exibir Quantidade de Questões na tela;
         document.getElementById("qtdQuestoes").innerHTML = quantidadeDeQuestoes;
@@ -231,7 +220,6 @@
         exibirQuestoesHTML(0)
 
         // Alterando Estado dos botões
-        iButtonSubmeter.disabled = false
         iButtonAvancar.disabled = true
     }
 
@@ -243,13 +231,9 @@
         const questaoAtual = perguntasAleatorias[index];
         numeroDaQuestaoAtual = index;
 
-        // Exibição de Pergunta na console;
-        console.log("questaoAtual")
-        console.log(questaoAtual)
-
         // Preenchimento do HTML;
         document.getElementById("spanNumeroDaQuestaoAtual").innerHTML = Number(index) + 1 // ajustando porque o index começa em 0
-        document.getElementById("spanQuestaoExibida").innerHTML = questaoAtual.pergunta;
+        document.getElementById("spanQuestaoAtual").innerHTML = questaoAtual.pergunta;
         document.getElementById("labelOpcaoUm").innerHTML = questaoAtual.alternativaA;
         document.getElementById("labelOpcaoDois").innerHTML = questaoAtual.alternativaB;
         document.getElementById("labelOpcaoTres").innerHTML = questaoAtual.alternativaC;
@@ -276,7 +260,6 @@
             alert(`Escolha uma alternativa!`);
         } else {
             // Alterando Estado dos botões
-            iButtonSubmeter.disabled = true;
             iButtonAvancar.disabled = false;
 
             // Desabilita alternativas para escolha;
@@ -300,7 +283,6 @@
     function avancar() {
         // Alterando Estado dos botões
         iButtonAvancar.disabled = true;
-        iButtonSubmeter.disabled = false;
 
         // Desmarcar opção selecionada;
         desmarcar();
@@ -337,7 +319,6 @@
         // ForEach para validar a reposta que esta correta;
         options.forEach((option) => {
             if (option.value === respostaQuestaoAtual) {
-                console.log(`AlternativaCorreta está no componente: ${alternativaCorreta}`);
                 alternativaCorreta = option.labels[0].id;
             }
         })
@@ -345,7 +326,7 @@
         // verifica se resposta é correta;
         options.forEach((option) => {
             if (option.checked === true && option.value === respostaQuestaoAtual) {
-                document.getElementById(alternativaCorreta).classList.add("text-success-with-bg");
+                document.getElementById(alternativaCorreta).classList.add("text-success");
                 pontuacaoFinal++;
                 certas++;
                 document.getElementById("spanCertas").innerHTML = certas;
@@ -353,8 +334,8 @@
             } else if (option.checked && option.value !== respostaQuestaoAtual) {
                 const wrongLabelId = option.labels[0].id;
 
-                document.getElementById(wrongLabelId).classList.add("text-danger-with-bg");
-                document.getElementById(alternativaCorreta).classList.add("text-success-with-bg");
+                document.getElementById(wrongLabelId).classList.add("text-danger");
+                document.getElementById(alternativaCorreta).classList.add("text-success");
                 tentativaIncorreta++;
                 erradas++;
                 document.getElementById("spanErradas").innerHTML = erradas;
@@ -366,8 +347,8 @@
     function limparCores() {
         const options = document.getElementsByName("option");
         options.forEach((option) => {
-            document.getElementById(option.labels[0].id).classList.remove("text-danger-with-bg")
-            document.getElementById(option.labels[0].id).classList.remove("text-success-with-bg")
+            document.getElementById(option.labels[0].id).classList.remove("text-danger")
+            document.getElementById(option.labels[0].id).classList.remove("text-success")
         })
     }
 
@@ -388,7 +369,7 @@
 
         if (porcentagemFinalDeAcertos <= 0.3) {
             textoParaMensagemFinal = "Parece que você não estudou...";
-            classComCoresParaMensagemFinal = "text-danger-with-bg";
+            classComCoresParaMensagemFinal = "text-danger";
         }
         else if (porcentagemFinalDeAcertos > 0.3 && porcentagemFinalDeAcertos < 0.9) {
             textoParaMensagemFinal = "Pode melhorar na próxima, hein!";
@@ -396,7 +377,7 @@
         }
         else if (porcentagemFinalDeAcertos >= 0.9) {
             textoParaMensagemFinal = "Uau, parabéns!";
-            classComCoresParaMensagemFinal = "text-success-with-bg";
+            classComCoresParaMensagemFinal = "text-success";
         }
 
         textoParaMensagemFinal += "<br> Você acertou " + Math.round((porcentagemFinalDeAcertos) * 100) + "% das questões.";
@@ -413,6 +394,28 @@
         btnTentarNovamente.disabled = false;
     }
 
+    b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+
+    function cadastrarResultado(){
+        fetch("/quiz/registrar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                pontuacaoQuiz: pontuacaoFinal,
+                tentativaQuiz: tentativa,
+                // tipoQuiz: tipo,
+                idusuarioQuiz: idUsuario
+            }),
+        })
+
+        setTimeout(function () {
+            window.location = "dashboard.html";
+        }, 3000);
+    }
+
+    
     // Array de questões do Quiz Bíblico;
     const perguntasQuizBiblico = [
         {
@@ -553,7 +556,7 @@
         },
         {
             "pergunta": "Onde Jesus fez seu primeiro milagre?",
-            "alternativaA": "Rio Jordão",
+            "alternativaA": "Rio Jordao",
             "alternativaB": "Casamento",
             "alternativaC": "Sinagoga",
             "alternativaD": "Deserto",
