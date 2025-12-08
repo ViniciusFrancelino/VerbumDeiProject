@@ -108,12 +108,20 @@ body {
 .sectionText {
   margin-top: 5.5%;
   margin-left: 2.5%;
+  margin-right: 2.5%;
 }
 
 .divSectionText {
   margin-top: 5px solid #43260c;
 }
 
+.sectionSobreMim h2{
+  font-size: 250%;
+}
+
+.spanSobreMin {
+  font-size: 150%;
+}
 
 /* Footer */
 footer {
@@ -121,6 +129,7 @@ footer {
   align-items: center;
   justify-content: flex-start;
   background-color: #43260c;
+  position: fixed;
   color: #ffffff;
   bottom: 0;
   left: 0;
